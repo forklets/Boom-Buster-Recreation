@@ -1,4 +1,4 @@
-// pulls the sprites, tilesets, fonts and sounds out of your copy of boom! buster and puts them in the project
+// pulls the sprites, tilesets, fonts and sounds out of your copy of boom buster and puts them in the project
 // needs undertalemodtool 0.9.0.0 or newer
 //
 // 1. open the game's data.win in utmt (keep ag_bgm.dat next to it)
