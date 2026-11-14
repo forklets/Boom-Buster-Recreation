@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"draw_glyph",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"draw_glyph",
+  "parent":{
+    "name":"draw",
+    "path":"folders/scripts/draw.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

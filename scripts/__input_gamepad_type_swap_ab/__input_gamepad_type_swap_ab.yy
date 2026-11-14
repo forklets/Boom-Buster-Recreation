@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__input_gamepad_type_swap_ab",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__input_gamepad_type_swap_ab",
+  "parent":{
+    "name":"underscore",
+    "path":"folders/scripts/input/underscore.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

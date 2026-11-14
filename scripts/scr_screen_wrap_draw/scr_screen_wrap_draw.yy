@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_screen_wrap_draw",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_screen_wrap_draw",
+  "parent":{
+    "name":"screen",
+    "path":"folders/scripts/screen.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

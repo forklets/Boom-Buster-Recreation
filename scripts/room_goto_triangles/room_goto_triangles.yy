@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"room_goto_triangles",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"room_goto_triangles",
+  "parent":{
+    "name":"room",
+    "path":"folders/scripts/room.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

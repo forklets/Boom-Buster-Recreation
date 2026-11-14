@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__input_class_trigger_effect_feedback",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__input_class_trigger_effect_feedback",
+  "parent":{
+    "name":"underscore",
+    "path":"folders/scripts/input/underscore.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

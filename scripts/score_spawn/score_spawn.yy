@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"score_spawn",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"score_spawn",
+  "parent":{
+    "name":"score",
+    "path":"folders/scripts/game/score.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

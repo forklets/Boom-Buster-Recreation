@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__input_axis_is_directional",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__input_axis_is_directional",
+  "parent":{
+    "name":"underscore",
+    "path":"folders/scripts/input/underscore.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

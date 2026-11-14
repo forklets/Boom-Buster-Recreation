@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_switch_onoff",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_switch_onoff",
+  "parent":{
+    "name":"game",
+    "path":"folders/scripts/game.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

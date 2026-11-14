@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"draw_text_shake",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"draw_text_shake",
+  "parent":{
+    "name":"draw",
+    "path":"folders/scripts/draw.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

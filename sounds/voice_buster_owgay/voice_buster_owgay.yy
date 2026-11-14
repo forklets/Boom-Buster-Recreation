@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"voice_buster_owgay",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":1,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":1.36,
+  "exportDir":"",
+  "name":"voice_buster_owgay",
+  "parent":{
+    "name":"sounds",
+    "path":"folders/sounds.yy",
+  },
+  "preload":true,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"voice_buster_owgay.wav",
+  "volume":1.0,
+}

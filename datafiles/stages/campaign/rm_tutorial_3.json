@@ -1,0 +1,10 @@
+{
+  "elements":[
+  ],
+  "bgm":"bgm_grotto",
+  "stage_event":-4.0,
+  "bossfight":false,
+  "paths":[
+  ],
+  "name":"Jump, Jump, Dash!"
+}

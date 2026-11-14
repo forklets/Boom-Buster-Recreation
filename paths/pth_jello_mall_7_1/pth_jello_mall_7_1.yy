@@ -1,0 +1,18 @@
+{
+  "$GMPath":"",
+  "%Name":"pth_jello_mall_7_1",
+  "closed":true,
+  "kind":0,
+  "name":"pth_jello_mall_7_1",
+  "parent":{
+    "name":"paths",
+    "path":"folders/paths.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":544.0,"y":912.0,},
+    {"speed":100.0,"x":1184.0,"y":912.0,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}

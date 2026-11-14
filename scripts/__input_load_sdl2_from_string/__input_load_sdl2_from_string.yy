@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__input_load_sdl2_from_string",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__input_load_sdl2_from_string",
+  "parent":{
+    "name":"underscore",
+    "path":"folders/scripts/input/underscore.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

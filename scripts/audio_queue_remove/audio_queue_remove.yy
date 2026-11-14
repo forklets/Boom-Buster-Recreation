@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"audio_queue_remove",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"audio_queue_remove",
+  "parent":{
+    "name":"sound",
+    "path":"folders/scripts/sound.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

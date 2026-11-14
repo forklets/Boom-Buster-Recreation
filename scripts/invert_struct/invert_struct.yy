@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"invert_struct",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"invert_struct",
+  "parent":{
+    "name":"struct",
+    "path":"folders/scripts/helper/struct.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

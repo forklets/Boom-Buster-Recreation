@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"pal_swap",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"pal_swap",
+  "parent":{
+    "name":"game",
+    "path":"folders/scripts/game.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

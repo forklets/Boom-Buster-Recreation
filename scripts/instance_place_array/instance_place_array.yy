@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"instance_place_array",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"instance_place_array",
+  "parent":{
+    "name":"instance",
+    "path":"folders/scripts/helper/instance.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

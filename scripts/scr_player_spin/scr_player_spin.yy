@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_player_spin",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_player_spin",
+  "parent":{
+    "name":"player",
+    "path":"folders/scripts/game/player.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

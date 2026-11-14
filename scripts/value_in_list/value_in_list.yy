@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"value_in_list",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"value_in_list",
+  "parent":{
+    "name":"get",
+    "path":"folders/scripts/helper/get.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

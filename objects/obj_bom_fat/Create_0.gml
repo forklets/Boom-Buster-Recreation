@@ -1,0 +1,11 @@
+event_inherited();
+col = 0;
+bom_idle = spr_bom_fat_orange;
+bom_edge = spr_bom_fat_cyan_edge;
+pal_sprite = noone;
+set_properties = false;
+grav = 1.4;
+bounce_mult = 0.2;
+worth = 4;
+wing_width = 60;
+wing_yoff = -45;

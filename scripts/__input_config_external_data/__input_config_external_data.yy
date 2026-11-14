@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__input_config_external_data",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__input_config_external_data",
+  "parent":{
+    "name":"underscore",
+    "path":"folders/scripts/input/underscore.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

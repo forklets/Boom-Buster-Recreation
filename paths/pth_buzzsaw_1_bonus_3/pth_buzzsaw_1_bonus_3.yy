@@ -1,0 +1,18 @@
+{
+  "$GMPath":"",
+  "%Name":"pth_buzzsaw_1_bonus_3",
+  "closed":true,
+  "kind":0,
+  "name":"pth_buzzsaw_1_bonus_3",
+  "parent":{
+    "name":"paths",
+    "path":"folders/paths.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":2144.0,"y":448.0,},
+    {"speed":100.0,"x":1824.0,"y":448.0,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,9 @@
+timer = 12;
+alarm[0] = 1;
+mypath = noone;
+path_pos = noone;
+fat = false;
+toggle_pause = false;
+chute = false;
+landYobj = noone;
+barrel_item = noone;

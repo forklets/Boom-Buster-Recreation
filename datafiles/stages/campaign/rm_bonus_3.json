@@ -1,0 +1,25 @@
+{
+  "name":"",
+  "stage_event":-4.0,
+  "paths":[
+    {
+      "spd":0.01,
+      "ease":2.0,
+      "name":"pth_buzzsaw_bonus_3"
+    },
+    {
+      "spd":0.01,
+      "ease":2.0,
+      "name":"pth_buzzsaw_1_bonus_3"
+    },
+    {
+      "spd":0.01,
+      "ease":2.0,
+      "name":"pth_buzzsaw_2_bonus_3"
+    }
+  ],
+  "elements":[
+  ],
+  "bgm":"bgm_bonus",
+  "bossfight":false
+}

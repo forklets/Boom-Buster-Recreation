@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"in_range",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"in_range",
+  "parent":{
+    "name":"math",
+    "path":"folders/scripts/helper/math.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

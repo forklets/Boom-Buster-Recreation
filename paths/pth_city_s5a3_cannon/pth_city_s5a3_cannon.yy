@@ -1,0 +1,20 @@
+{
+  "$GMPath":"",
+  "%Name":"pth_city_s5a3_cannon",
+  "closed":true,
+  "kind":1,
+  "name":"pth_city_s5a3_cannon",
+  "parent":{
+    "name":"paths",
+    "path":"folders/paths.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":1216.0,"y":864.0,},
+    {"speed":100.0,"x":512.0,"y":864.0,},
+    {"speed":100.0,"x":512.0,"y":640.0,},
+    {"speed":100.0,"x":1216.0,"y":640.0,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}

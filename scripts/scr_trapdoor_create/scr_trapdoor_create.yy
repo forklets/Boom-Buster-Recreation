@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_trapdoor_create",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_trapdoor_create",
+  "parent":{
+    "name":"trapdoor",
+    "path":"folders/scripts/game/trapdoor.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"path_follow",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"path_follow",
+  "parent":{
+    "name":"path",
+    "path":"folders/scripts/game/path.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

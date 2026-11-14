@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"__input_steam_apply_trigger_effect",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"__input_steam_apply_trigger_effect",
+  "parent":{
+    "name":"underscore",
+    "path":"folders/scripts/input/underscore.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

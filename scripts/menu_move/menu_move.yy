@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"menu_move",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"menu_move",
+  "parent":{
+    "name":"input",
+    "path":"folders/scripts/input.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

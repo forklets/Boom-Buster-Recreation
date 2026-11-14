@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"timer_logic",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"timer_logic",
+  "parent":{
+    "name":"helper",
+    "path":"folders/scripts/helper.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

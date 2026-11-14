@@ -1,0 +1,22 @@
+{
+  "$GMPath":"",
+  "%Name":"pth_gui_bombfuse",
+  "closed":false,
+  "kind":1,
+  "name":"pth_gui_bombfuse",
+  "parent":{
+    "name":"paths",
+    "path":"folders/paths.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":1796.0884,"y":395.6045,},
+    {"speed":100.0,"x":1772.2976,"y":306.25568,},
+    {"speed":100.0,"x":1756.2279,"y":306.93008,},
+    {"speed":100.0,"x":1741.5767,"y":315.3022,},
+    {"speed":100.0,"x":1715.7627,"y":342.3952,},
+    {"speed":100.0,"x":1708.6,"y":355.4417,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"draw_reset_clip",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"draw_reset_clip",
+  "parent":{
+    "name":"draw",
+    "path":"folders/scripts/draw.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

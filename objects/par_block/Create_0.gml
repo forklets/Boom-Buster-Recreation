@@ -1,0 +1,14 @@
+hit = false;
+screen_spr = noone;
+anim_init();
+pal_sprite = noone;
+pal_sub = 0;
+pal_ind = 0;
+xscale = 0;
+yscale = 0;
+scale_percent = 0;
+
+event_hit = function()
+{
+    audio_play_sound(snd_thunk, 0, 0);
+};

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_tv_wizard",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_tv_wizard",
+  "parent":{
+    "name":"tv",
+    "path":"folders/scripts/game/tv.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

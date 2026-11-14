@@ -1,0 +1,20 @@
+{
+  "$GMPath":"",
+  "%Name":"pth_platform_s8a3",
+  "closed":true,
+  "kind":1,
+  "name":"pth_platform_s8a3",
+  "parent":{
+    "name":"paths",
+    "path":"folders/paths.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":1664.0,"y":544.0,},
+    {"speed":100.0,"x":1440.0,"y":320.0,},
+    {"speed":100.0,"x":1216.0,"y":544.0,},
+    {"speed":100.0,"x":1440.0,"y":800.0,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"channel_to_str",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"channel_to_str",
+  "parent":{
+    "name":"character",
+    "path":"folders/scripts/helper/character.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

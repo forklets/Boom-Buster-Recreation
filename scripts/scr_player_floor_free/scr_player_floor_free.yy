@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_player_floor_free",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_player_floor_free",
+  "parent":{
+    "name":"player",
+    "path":"folders/scripts/game/player.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

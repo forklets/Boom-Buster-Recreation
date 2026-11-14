@@ -1,0 +1,10 @@
+event_inherited();
+col = 0;
+bom_idle = spr_bom_anxious;
+bom_edge = spr_bom_anxious;
+bom_omg = spr_bom_anxious_omg;
+timer[0] = 420;
+edge_time = timer[0];
+omg_time = 210;
+pal_sprite = pal_bom_anxious;
+set_properties = false;

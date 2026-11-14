@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"combo_play_sound",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"combo_play_sound",
+  "parent":{
+    "name":"sound",
+    "path":"folders/scripts/sound.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

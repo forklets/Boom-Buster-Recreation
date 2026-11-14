@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"play_impact",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"play_impact",
+  "parent":{
+    "name":"sound",
+    "path":"folders/scripts/sound.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

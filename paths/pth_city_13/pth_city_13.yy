@@ -1,0 +1,18 @@
+{
+  "$GMPath":"",
+  "%Name":"pth_city_13",
+  "closed":true,
+  "kind":0,
+  "name":"pth_city_13",
+  "parent":{
+    "name":"paths",
+    "path":"folders/paths.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":1120.0,"y":656.0,},
+    {"speed":100.0,"x":672.0,"y":656.0,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"bool_onoff",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"bool_onoff",
+  "parent":{
+    "name":"bool",
+    "path":"folders/scripts/helper/bool.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

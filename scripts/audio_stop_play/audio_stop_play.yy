@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"audio_stop_play",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"audio_stop_play",
+  "parent":{
+    "name":"sound",
+    "path":"folders/scripts/sound.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

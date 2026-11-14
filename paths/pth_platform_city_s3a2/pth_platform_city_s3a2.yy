@@ -1,0 +1,20 @@
+{
+  "$GMPath":"",
+  "%Name":"pth_platform_city_s3a2",
+  "closed":true,
+  "kind":1,
+  "name":"pth_platform_city_s3a2",
+  "parent":{
+    "name":"paths",
+    "path":"folders/paths.yy",
+  },
+  "points":[
+    {"speed":0.006,"x":960.0,"y":512.0,},
+    {"speed":100.0,"x":608.0,"y":512.0,},
+    {"speed":100.0,"x":608.0,"y":672.0,},
+    {"speed":100.0,"x":960.0,"y":672.0,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}

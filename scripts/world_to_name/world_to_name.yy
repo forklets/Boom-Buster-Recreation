@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"world_to_name",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"world_to_name",
+  "parent":{
+    "name":"get",
+    "path":"folders/scripts/helper/get.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

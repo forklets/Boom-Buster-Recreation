@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"col_to_rgb",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"col_to_rgb",
+  "parent":{
+    "name":"color",
+    "path":"folders/scripts/color.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

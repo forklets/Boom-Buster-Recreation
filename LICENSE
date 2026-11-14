@@ -1,0 +1,23 @@
+Boom Buster - Decompilation
+===========================
+
+This repository contains a decompilation of the game Boom Buster.
+
+The original game, including its code, art, audio, levels, and all other
+content, is Copyright (c) 2026 Tallglass. All rights reserved.
+
+This decompilation is not affiliated with or endorsed by Tallglass. No
+license is granted to the original game's code or assets by this repository.
+All rights to that material remain with their respective owners.
+
+Third-party components bundled with the game are distributed under their own
+licenses, which are reproduced in THIRD_PARTY_LICENSES.txt:
+
+  - Input by Juju Adams and Alynne Keith (MIT License)
+      scripts/__input_*, datafiles/input_license.txt
+  - SDL2 controller type list by Sam Lantinga (zlib License)
+      datafiles/controllertypes.csv
+  - SDL_GameControllerDB (zlib License)
+      datafiles/sdl2.txt
+  - Chromium controller blocklist by The Chromium Authors (BSD 3-Clause License)
+      datafiles/controllerblacklist.csv

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"get_highscore",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"get_highscore",
+  "parent":{
+    "name":"get",
+    "path":"folders/scripts/helper/get.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

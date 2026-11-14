@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"anim_play_player",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"anim_play_player",
+  "parent":{
+    "name":"animation",
+    "path":"folders/scripts/animation.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

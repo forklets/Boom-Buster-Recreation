@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"init_game_globals",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"init_game_globals",
+  "parent":{
+    "name":"helper",
+    "path":"folders/scripts/helper.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

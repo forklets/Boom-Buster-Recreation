@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"stage_setup",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"stage_setup",
+  "parent":{
+    "name":"game",
+    "path":"folders/scripts/game.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shd_masterclip",
+  "name":"shd_masterclip",
+  "parent":{
+    "name":"shaders",
+    "path":"folders/shaders.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

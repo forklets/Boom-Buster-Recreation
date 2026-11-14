@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_bg_sunset",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_bg_sunset",
+  "parent":{
+    "name":"background",
+    "path":"folders/scripts/background.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

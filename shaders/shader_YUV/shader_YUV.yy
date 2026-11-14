@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shader_YUV",
+  "name":"shader_YUV",
+  "parent":{
+    "name":"shaders",
+    "path":"folders/shaders.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

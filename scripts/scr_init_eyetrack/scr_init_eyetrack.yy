@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_init_eyetrack",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_init_eyetrack",
+  "parent":{
+    "name":"eyetrack",
+    "path":"folders/scripts/game/eyetrack.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

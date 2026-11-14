@@ -1,0 +1,9 @@
+# Game assets are not distributed with this repo.
+# Run tools/gather_assets.csx in UndertaleModTool to pull them from your own copy of the game.
+sprites/**/*.png
+tilesets/**/*.png
+fonts/**/*.png
+sounds/**/*.wav
+sounds/**/*.ogg
+sounds/**/*.mp3
+gather_assets_log.txt

@@ -1,0 +1,42 @@
+{
+  "$GMAnimCurve":"",
+  "%Name":"acurv_basics",
+  "channels":[
+    {"$GMAnimCurveChannel":"","%Name":"bounce","colour":4290799884,"name":"bounce","points":[
+        {"th0":-0.25,"th1":0.0,"tv0":0.0,"tv1":-7.287599E-08,"x":0.0,"y":-0.00290748873,},
+        {"th0":-0.0800000355,"th1":0.07,"tv0":-0.0003815837,"tv1":0.000147104263,"x":0.169221655,"y":1.40514755,},
+        {"th0":-0.099999994,"th1":0.05,"tv0":0.0,"tv1":0.0,"x":0.37,"y":0.93,},
+        {"th0":-0.0500000119,"th1":0.0322021842,"tv0":0.0,"tv1":0.0,"x":0.55,"y":1.02,},
+        {"th0":-0.1,"th1":0.0627630949,"tv0":0.0,"tv1":0.0,"x":0.749004,"y":0.9913705,},
+        {"th0":-0.106786966,"th1":0.25,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.00017619,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+    {"$GMAnimCurveChannel":"","%Name":"ease_inout","colour":4281083598,"name":"ease_inout","points":[
+        {"th0":-0.05,"th1":0.4758322,"tv0":0.0,"tv1":0.0211130381,"x":0.0,"y":0.0,},
+        {"th0":-0.443135917,"th1":0.05,"tv0":-0.0143514276,"tv1":0.0,"x":1.0,"y":1.0,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+    {"$GMAnimCurveChannel":"","%Name":"curve1","colour":4278246829,"name":"curve1","points":[
+        {"th0":-0.25,"th1":0.0,"tv0":0.0,"tv1":-7.287599E-08,"x":0.0,"y":-0.00290748873,},
+        {"th0":-0.0800000355,"th1":0.07,"tv0":-0.0003815837,"tv1":0.000147104263,"x":0.173,"y":1.274,},
+        {"th0":-0.099999994,"th1":0.05,"tv0":0.0,"tv1":0.0,"x":0.37,"y":0.93,},
+        {"th0":-0.0500000119,"th1":0.0322021842,"tv0":0.0,"tv1":0.0,"x":0.55,"y":1.02,},
+        {"th0":-0.1,"th1":0.0627630949,"tv0":0.0,"tv1":0.0,"x":0.749004,"y":0.9913705,},
+        {"th0":-0.106786966,"th1":0.25,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.00017619,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+    {"$GMAnimCurveChannel":"","%Name":"ease_in","colour":4294934323,"name":"ease_in","points":[
+        {"th0":-0.1,"th1":0.5,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
+        {"th0":-2.09547579E-09,"th1":0.1,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+    {"$GMAnimCurveChannel":"","%Name":"ease_out","colour":4283215696,"name":"ease_out","points":[
+        {"th0":-0.1,"th1":2.09547579E-09,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
+        {"th0":-0.5,"th1":0.1,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+  ],
+  "function":2,
+  "name":"acurv_basics",
+  "parent":{
+    "name":"animation curves",
+    "path":"folders/animation curves.yy",
+  },
+  "resourceType":"GMAnimCurve",
+  "resourceVersion":"2.0",
+}

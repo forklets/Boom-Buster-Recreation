@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"bridget_get",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"bridget_get",
+  "parent":{
+    "name":"character",
+    "path":"folders/scripts/helper/character.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

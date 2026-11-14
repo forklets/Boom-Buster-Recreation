@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_get_round",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_get_round",
+  "parent":{
+    "name":"get",
+    "path":"folders/scripts/helper/get.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

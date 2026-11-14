@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_set_highscore",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_set_highscore",
+  "parent":{
+    "name":"set",
+    "path":"folders/scripts/helper/set.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

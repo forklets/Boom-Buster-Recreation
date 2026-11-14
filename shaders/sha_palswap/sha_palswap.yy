@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"sha_palswap",
+  "name":"sha_palswap",
+  "parent":{
+    "name":"shaders",
+    "path":"folders/shaders.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

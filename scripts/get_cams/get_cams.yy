@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"get_cams",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"get_cams",
+  "parent":{
+    "name":"get",
+    "path":"folders/scripts/helper/get.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"array_exists",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"array_exists",
+  "parent":{
+    "name":"math",
+    "path":"folders/scripts/helper/math.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

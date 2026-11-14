@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"calculate_jump",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"calculate_jump",
+  "parent":{
+    "name":"animation",
+    "path":"folders/scripts/animation.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

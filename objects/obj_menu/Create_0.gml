@@ -1,0 +1,14 @@
+ready = false;
+frame = 0;
+box_xscale = [1.3, 0.8, 1.14, 1.0250000000000001, 1];
+box_yscale = [0.5, 1.4, 1.14, 0.925, 1];
+selected = 0;
+paused_ind = 1;
+xoff = 0;
+yoff = 0;
+box = true;
+options_draw_max = 5;
+bar_shake = 0;
+deac = false;
+glyph_shakeX = 0;
+glyph_shakeY = 0;

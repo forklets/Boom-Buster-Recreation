@@ -1,0 +1,18 @@
+{
+  "$GMPath":"",
+  "%Name":"pth_sky_4_cannon",
+  "closed":true,
+  "kind":0,
+  "name":"pth_sky_4_cannon",
+  "parent":{
+    "name":"paths",
+    "path":"folders/paths.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":5408.0,"y":576.0,},
+    {"speed":100.0,"x":6112.0,"y":576.0,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}

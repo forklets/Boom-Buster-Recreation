@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"easy_smooth",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"easy_smooth",
+  "parent":{
+    "name":"math",
+    "path":"folders/scripts/helper/math.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

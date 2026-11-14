@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"use_curve",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"use_curve",
+  "parent":{
+    "name":"animation",
+    "path":"folders/scripts/animation.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

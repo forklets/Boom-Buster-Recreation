@@ -1,0 +1,20 @@
+{
+  "$GMPath":"",
+  "%Name":"pth_city_playground_cloud",
+  "closed":true,
+  "kind":1,
+  "name":"pth_city_playground_cloud",
+  "parent":{
+    "name":"paths",
+    "path":"folders/paths.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":2240.0,"y":608.0,},
+    {"speed":100.0,"x":2432.0,"y":480.0,},
+    {"speed":100.0,"x":2624.0,"y":608.0,},
+    {"speed":100.0,"x":2432.0,"y":736.0,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}

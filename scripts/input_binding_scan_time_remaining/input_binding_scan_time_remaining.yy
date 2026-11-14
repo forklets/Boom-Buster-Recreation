@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"input_binding_scan_time_remaining",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"input_binding_scan_time_remaining",
+  "parent":{
+    "name":"nawt underscore",
+    "path":"folders/scripts/input/nawt underscore.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

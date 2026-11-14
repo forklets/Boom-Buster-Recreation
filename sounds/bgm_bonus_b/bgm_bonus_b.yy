@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"bgm_bonus_b",
+  "audioGroupId":{
+    "name":"ag_bgm",
+    "path":"audiogroups/ag_bgm",
+  },
+  "bitDepth":1,
+  "channelFormat":1,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":21.66,
+  "exportDir":"",
+  "name":"bgm_bonus_b",
+  "parent":{
+    "name":"sounds",
+    "path":"folders/sounds.yy",
+  },
+  "preload":true,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"bgm_bonus_b.wav",
+  "volume":1.0,
+}

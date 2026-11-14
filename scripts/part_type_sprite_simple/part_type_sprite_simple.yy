@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"part_type_sprite_simple",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"part_type_sprite_simple",
+  "parent":{
+    "name":"animation",
+    "path":"folders/scripts/animation.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

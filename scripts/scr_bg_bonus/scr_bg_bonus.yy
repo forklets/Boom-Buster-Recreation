@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_bg_bonus",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_bg_bonus",
+  "parent":{
+    "name":"background",
+    "path":"folders/scripts/background.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

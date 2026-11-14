@@ -1,0 +1,18 @@
+{
+  "$GMPath":"",
+  "%Name":"pth_sky_4_cloud",
+  "closed":true,
+  "kind":0,
+  "name":"pth_sky_4_cloud",
+  "parent":{
+    "name":"paths",
+    "path":"folders/paths.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":2432.0,"y":512.0,},
+    {"speed":100.0,"x":1856.0,"y":512.0,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}

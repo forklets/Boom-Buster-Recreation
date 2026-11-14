@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_player_floor_plane",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_player_floor_plane",
+  "parent":{
+    "name":"player",
+    "path":"folders/scripts/game/player.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

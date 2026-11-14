@@ -1,0 +1,20 @@
+{
+  "$GMPath":"",
+  "%Name":"pth_city_s6a1",
+  "closed":true,
+  "kind":1,
+  "name":"pth_city_s6a1",
+  "parent":{
+    "name":"paths",
+    "path":"folders/paths.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":512.0,"y":256.0,},
+    {"speed":100.0,"x":256.0,"y":512.0,},
+    {"speed":100.0,"x":512.0,"y":768.0,},
+    {"speed":100.0,"x":768.0,"y":512.0,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}
