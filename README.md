@@ -1,4 +1,6 @@
-# boom buster gutted
+# boom buster recreation
+
+changed the title to make it sound less petty..
 
 decomp of boom buster with all the art and audio taken out. you need your own copy of the game to put them back in, there's a script for it below.
 
