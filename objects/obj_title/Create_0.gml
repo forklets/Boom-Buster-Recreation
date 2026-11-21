@@ -1,9 +1,11 @@
+scr_check_all_foods();
+
 if (file_exists(game_save_id + "save.json"))
     global.save = load_json(game_save_id + "save.json");
 
 start = false;
 start_done = false;
-surf = noone;
+surf = -4;
 var i = 0;
 
 while (audio_exists(i))
@@ -13,10 +15,10 @@ while (audio_exists(i))
         i++;
         continue;
     }
-    
+
     if (audio_is_playing(i))
         audio_stop_sound(i);
-    
+
     i++;
 }
 
@@ -170,16 +172,14 @@ event_buster_anim_crazy = function()
         bom_percent = 0;
         bom_down = true;
         wizard_rise = choose(true, false);
-        
+
         if (wizard_rise)
         {
             event_pause(660);
             timer[1] = 210;
         }
         else
-        {
             event_pause(240);
-        }
     }, function()
     {
         bom_down = false;
@@ -285,20 +285,20 @@ event_buster_anim_walkaway = function()
         buster_play(spr_title_buster_walk);
         buster_x = left_width / 2;
         walk = true;
-        
+
         if (global.first)
             wizard_rise = true;
         else
             wizard_rise = choose(true, false);
-        
+
         var _xoff = 0;
-        
+
         if (wizard_rise)
         {
             _xoff += 3000;
             timer[1] = 195;
         }
-        
+
         buster_xto = (left_width / 2) + ((1800 + _xoff) * walk_facing);
     }];
 };
@@ -320,24 +320,22 @@ timer[1] = -1;
 timer_func[1] = function()
 {
     var _rise = wizard_rise_anim;
-    
+
     if (!_rise)
     {
         wizard_rise_anim = true;
         timer[1] = 300;
     }
     else
-    {
         wizard_rise_anim = false;
-    }
-    
+
     wizard_percent = 0;
 };
 
 event_buster_animend = function()
 {
     var _spr = buster_spr;
-    
+
     if (_spr == spr_title_buster_smug_inb)
         buster_spr = spr_title_buster_smug;
     else if (_spr == spr_title_buster_smug_inb_out)
@@ -361,7 +359,7 @@ timer_func[4] = function()
 {
     start_flash = !start_flash;
     timer[4] = start_flash_delay;
-    
+
     if (box_in && !start_flash)
     {
         start_flash = false;
@@ -401,7 +399,7 @@ if (global.round_select)
     timer[5] = 120;
 }
 
-if (global.theater != noone)
+if (global.theater != -4)
 {
     box_percent = 1;
     box_in = true;
@@ -427,7 +425,7 @@ event_beat = function()
 {
     if (!box_in)
         logo_beat_percent = 0;
-    
+
     logo_bounce_amnt = logo_bounce_normal;
 };
 
@@ -448,18 +446,18 @@ timer[5] = -1;
 timer_func[5] = function()
 {
     var _play = irandom_range(0, array_length(animations) - 1);
-    
+
     if (global.first)
     {
         _play = cycle_count;
         cycle_count++;
-        
+
         if (cycle_count > (array_length(animations) - 1))
         {
             global.first = false;
             cycle_count = 0;
         }
     }
-    
+
     animations[_play]();
 };

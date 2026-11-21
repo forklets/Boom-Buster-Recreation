@@ -63,7 +63,7 @@ menu_game =
 var func_fullscreen = function()
 {
     window_set_fullscreen(!window_get_fullscreen());
-    
+
     if (!window_get_fullscreen())
         window_center();
 };
@@ -113,17 +113,17 @@ menu_video =
 
 func_reset = function()
 {
-    global.vol_master = 0.5;
-    global.vol_bgm = 1;
-    global.vol_sfx = 1;
-    
+    global.master_vol = 0.5;
+    global.bgm_vol = 1;
+    global.sfx_vol = 1;
+
     with (obj_persistent)
         set_audio();
-    
+
     ini_open("options.ini");
-    ini_write_real("OPTIONS", "Master Volume", global.vol_master);
-    ini_write_real("OPTIONS", "BGM Volume", global.vol_bgm);
-    ini_write_real("OPTIONS", "SFX Volume", global.vol_sfx);
+    ini_write_real("OPTIONS", "Master Volume", global.master_vol);
+    ini_write_real("OPTIONS", "BGM Volume", global.bgm_vol);
+    ini_write_real("OPTIONS", "SFX Volume", global.sfx_vol);
     ini_close();
 };
 

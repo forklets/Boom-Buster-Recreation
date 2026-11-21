@@ -34,10 +34,10 @@ if (obj_controller.win || state == state_deac || deac_controls || (state == stat
     input_verb_consume("up", player);
     input_verb_consume("down", player);
     input_verb_consume("jump", player);
-    
+
     if (!deac_allow_spin)
         input_verb_consume("spin", player);
-    
+
     input_verb_consume("dash", player);
     input_verb_consume("special", player);
     input_verb_consume("crouch", player);
@@ -47,11 +47,9 @@ if (obj_controller.win || state == state_deac || deac_controls || (state == stat
 if (keyboard_check_pressed(vk_tab) && global.debug)
 {
     recording = !recording;
-    
+
     if (recording)
-    {
         record_frames = [];
-    }
     else
     {
         var _str = json_stringify(record_frames, true);
@@ -83,10 +81,10 @@ var _cannon_func = function(arg0)
     my_cannon = arg0;
     x = my_cannon.x + 8;
     y = my_cannon.y;
-    
+
     if (my_cannon.deac_player)
         deac_controls = true;
-    
+
     state = state_cannon;
     reset_action();
     coyote_spin = 0;
@@ -96,14 +94,14 @@ var _cannon_func = function(arg0)
 if (place_meeting(x, y, obj_cannon))
 {
     var _cannon = instance_place(x, y, obj_cannon);
-    
+
     if (_cannon && ignore_cannon != _cannon)
     {
         if (array_contains(global.stages_final, room))
         {
             with (obj_player)
                 _cannon_func(_cannon);
-            
+
             with (obj_player2)
             {
                 ignore_cannon = _cannon;
@@ -112,10 +110,10 @@ if (place_meeting(x, y, obj_cannon))
                 my_cannon = _cannon;
                 x = my_cannon.x + 8;
                 y = my_cannon.y;
-                
+
                 if (my_cannon.deac_player)
                     deac_controls = true;
-                
+
                 state = state_cannon;
                 reset_action();
                 coyote_spin = 0;
@@ -123,10 +121,8 @@ if (place_meeting(x, y, obj_cannon))
             }
         }
         else
-        {
             _cannon_func(_cannon);
-        }
-        
+
         with (_cannon)
             event_user(0);
     }
@@ -151,11 +147,9 @@ switch (state)
     case state_free:
         scr_player_state_free();
         break;
-    
     case state_hurt:
         scr_player_state_hurt();
         break;
-    
     case state_powerup:
         if (anim_index >= powerup_index_change[newPowerup])
         {
@@ -166,39 +160,34 @@ switch (state)
                 flash_white_percent = 0.5;
                 transformed = true;
             }
-            
+
             if (newPowerup == 2)
             {
                 global.invincible = true;
-                
+
                 if (!audio_is_playing(mySnd_nuclear))
                     mySnd_nuclear = audio_play_sound(snd_nuclear, 0, true);
             }
             else
-            {
                 global.powerup = newPowerup;
-            }
         }
-        
+
         global.freeze = 999999;
         anim_logic();
         break;
-    
     case state_deac:
         if (exit_freeze())
             exit;
-        
+
         timer_logic(timer_pit);
         break;
-    
     case state_intro:
         anim_logic();
         break;
-    
     case state_cannon:
         if (exit_freeze())
             exit;
-        
+
         anim_logic();
         timer_logic(timer_invulnerable_flash);
         timer_logic(timer_become_vulnerable);
@@ -209,7 +198,6 @@ switch (state)
             var _spd = cannon_bounce_height * 3.25;
             hspd = dsin(_angle + 180) * _spd;
             vspd = dcos(_angle + 180) * _spd;
-            show_debug_message($"hspd:{hspd}\nvspd:{vspd}");
         };
         
         if (cannon_free && cannon_shot)
@@ -217,48 +205,48 @@ switch (state)
             xAxis = _input("right", player) - _input("left", player);
             hspd = approach(hspd, xAxis * 9, 1);
         }
-        
+
         if (!cannon_shot)
         {
             if (char == 0)
                 anim_play(spr_buster_cannon);
             else
                 anim_play(spr_bridget_cannon);
-            
+
             if (_input_pressed("jump", player) || my_cannon.auto || (input_check_pressed_all("jump") && array_contains(global.stages_final, room)))
             {
-                if (my_cannon.target_height != noone)
+                if (my_cannon.target_height != -4)
                     bounce_blocks = max(abs((my_cannon.target_height - y) / 64), 4.2);
                 else
                     bounce_blocks = my_cannon.bounce_height;
-                
+
                 cannon_angle = my_cannon.image_angle;
                 cannon_bounce_height = my_cannon.bounce_height;
-                
+
                 if (cannon_angle == 0)
                     vspd = -calculate_jump(bounce_blocks, grav_normal);
                 else
                     _rotate_cannon();
-                
+
                 cannon_shot = true;
-                
+
                 if (char == 0)
                     anim_play(spr_buster_cannonshoot);
                 else
                     anim_play(spr_bridget_cannonshoot);
-                
+
                 anim_index = 3;
                 aframe_delay = 0;
-                
+
                 with (my_cannon)
                     event_user(1);
-                
+
                 if (my_cannon.free)
                     cannon_free = true;
                 else
                     cannon_free = false;
-                
-                my_cannon = noone;
+
+                my_cannon = -4;
             }
         }
         else
@@ -280,18 +268,18 @@ switch (state)
                 _fx.image_alpha_spd = (_fx.image_alpha - _fx.image_alpha_to) / _life;
                 aframe_delay = 2;
             }
-            
+
             if (aframe_delay)
                 aframe_delay--;
-            
+
             var _rotated = false;
-            
+
             if (cannon_angle != 0)
             {
                 _rotate_cannon();
                 _rotated = true;
             }
-            
+
             if (!exit_freeze())
             {
                 if (cannon_angle != 0)
@@ -302,48 +290,44 @@ switch (state)
                     grav = _grav;
                 }
                 else
-                {
                     physics_apply();
-                }
             }
-            
+
             if (instance_exists(ignore_cannon))
             {
                 if (((ignore_cannon.image_angle == 0 && vspd >= -2) || (ignore_cannon.image_angle == 270 && hspd <= 2) || (ignore_cannon.image_angle == 90 && hspd >= -2)) && !cannon_free)
                 {
                     cannon_shot = true;
-                    ignore_cannon = noone;
+                    ignore_cannon = -4;
                     state = state_free;
                     aframe_delay = -1;
                 }
             }
-            
+
             if (instance_exists(ignore_cannon) && cannon_free && !place_meeting(x, y, ignore_cannon))
-                ignore_cannon = noone;
-            
+                ignore_cannon = -4;
+
             if (cannon_free && _input_pressed("dash"))
             {
                 state = state_free;
                 action = action_free;
                 scr_player_state_free();
             }
-            
-            if (ignore_cannon == noone && place_meeting(x, y, obj_cannon))
+
+            if (ignore_cannon == -4 && place_meeting(x, y, obj_cannon))
                 state = state_free;
         }
-        
+
         break;
-    
     case state_hurt_coop:
         anim_logic();
         timer_logic(timer_leave_hurt);
         break;
-    
     case state_mud:
         x += hspd;
         y += vspd;
         visible = false;
-        
+
         if (!place_meeting(x, y, obj_mud))
         {
             state = state_free;
@@ -351,7 +335,7 @@ switch (state)
             vspd = mud_dir[1] * mud_spd_out;
             visible = true;
         }
-        
+
         break;
 }
 
@@ -362,7 +346,7 @@ if (flash_white)
 {
     flash_white_percent = approach(flash_white_percent, 1, 0.06);
     flash_white_alpha = sin(flash_white_percent * pi);
-    
+
     if (flash_white_percent == 1)
     {
         flash_white_percent = 0;
@@ -386,13 +370,13 @@ if (global.invincible)
                 timer[timer_meterflash] = 7;
         }
     }
-    
+
     if (!audio_is_playing(mySnd_nuclear))
         mySnd_nuclear = audio_play_sound(snd_nuclear, 0, true);
-    
+
     var _seconds = 12;
     global.combo_meter = approach(global.combo_meter, 0, global.combo_meter_max / (_seconds * 60));
-    
+
     if (global.combo_meter == 0)
     {
         global.invincible = false;
@@ -408,7 +392,7 @@ else if (audio_is_playing(mySnd_nuclear))
 if (global.invincible && place_meeting(x, y, par_enemy))
 {
     var _inst = instance_place(x, y, par_enemy);
-    
+
     with (_inst)
     {
         if (!invincible)
@@ -450,11 +434,11 @@ if (state == state_free || state == state_cannon)
             var _inst = instance_create_layer(x, y, layer, obj_dynalife);
             _inst.visible = false;
             global.combo_meter = 0;
-            
+
             with (obj_tutorial_text)
                 timer[0] = 60;
         }
     }
-    
+
     event_user(3);
 }

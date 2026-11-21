@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_check_all_foods",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_check_all_foods",
+  "parent":{
+    "name":"score",
+    "path":"folders/scripts/game/score.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

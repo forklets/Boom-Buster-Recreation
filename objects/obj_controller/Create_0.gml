@@ -1,4 +1,4 @@
-audio_sound_gain(snd_explosion, 1, 1500);
+audio_sound_gain(snd_explosion, 1 * global.master_vol * global.sfx_vol, 1500);
 global.room_top = 64;
 global.tutorial_trigger = 0;
 
@@ -16,13 +16,20 @@ if (!global.round_select)
     }
 }
 
-ps_rain = noone;
+var _rain = true;
 
-if (array_contains(global.stages_final_scroll, room))
+if (!global.debug)
+    _rain = true;
+
+ps_rain = -4;
+part_type_rain = -4;
+
+if (array_contains(global.stages_final_scroll, room) && _rain)
 {
     ps_rain = part_system_create();
     part_system_draw_order(ps_rain, true);
-    var _ptype1 = part_type_create();
+    part_type_rain = part_type_create();
+    var _ptype1 = part_type_rain;
     part_type_shape(_ptype1, 3);
     part_type_size(_ptype1, 1, 1, 0, 0);
     part_type_scale(_ptype1, 1, 0.5);
@@ -39,13 +46,15 @@ if (array_contains(global.stages_final_scroll, room))
     part_emitter_stream(ps_rain, _pemit1, _ptype1, 1);
 }
 
-ps_lava = noone;
+ps_lava = -4;
+part_type_lava = -4;
 
 if (room == rm_final || room == rm_final_b)
 {
     ps_lava = part_system_create();
     part_system_draw_order(ps_lava, true);
-    var _ptype1 = part_type_create();
+    part_type_lava = part_type_create();
+    var _ptype1 = part_type_lava;
     part_type_shape(_ptype1, 8);
     part_type_size(_ptype1, 1.4, 1.9500000000000002, -0.012, 0);
     part_type_scale(_ptype1, 0.175, 0.175);
@@ -64,9 +73,9 @@ if (room == rm_final || room == rm_final_b)
     part_system_position(ps_lava, room_width / 2, room_height);
 }
 
-stage_event = noone;
+stage_event = -4;
 elements_completed_final = [];
-blood_mask = noone;
+blood_mask = -4;
 
 if (!array_contains(global.stages_final, room) && !array_contains(global.stages_final_scroll, room))
     alarm[3] = 1;
@@ -79,26 +88,32 @@ var _layers = layer_get_all();
 
 for (var l = 0; l < array_length(_layers); l++)
 {
+    if (array_contains(global.stages_final_scroll, room))
+        break;
+
+    if (array_contains(global.stages_final, room))
+        break;
+
     if (layer_get_name(_layers[l]) == "Tiles_Grass_B" && !global.bside)
         continue;
-    
+
     var _tilemap = layer_tilemap_get_id(_layers[l]);
-    
+
     if (_tilemap == -1)
         continue;
-    
+
     var _tileset = tilemap_get_tileset(_tilemap);
     var _tileset_name = tileset_get_name(_tileset);
-    
+
     if (!struct_exists(global.tile_data, _tileset_name))
         break;
-    
+
     for (var xx = 0; xx < (room_width / 64); xx++)
     {
         for (var yy = 0; yy < (room_height / 64); yy++)
         {
             var _tile = tilemap_get(_tilemap, xx, yy);
-            
+
             if (struct_exists(variable_struct_get(global.tile_data, _tileset_name), _tile))
             {
                 var _get = struct_get(variable_struct_get(global.tile_data, _tileset_name), _tile);
@@ -117,21 +132,21 @@ for (var i = 0; i < array_length(_footsteps); i++)
 for (var i = 0; i < array_length(_layers); i++)
 {
     var _tilemap = layer_tilemap_get_id(_layers[i]);
-    
+
     if (_tilemap == -1)
         continue;
-    
+
     var _tileset = tilemap_get_tileset(_tilemap);
-    
+
     if (_tileset == tst_mall && global.bside)
         tilemap_tileset(_tilemap, tst_mall_b);
-    
+
     if (_tileset == tst_city && global.bside)
         tilemap_tileset(_tilemap, tst_city_b);
-    
+
     if (_tileset == tst_factory && global.bside && room != rm_final_scroll_b && room != rm_outskirts_b3)
         tilemap_tileset(_tilemap, tst_factory_b);
-    
+
     if (_tileset == tst_tower && global.bside)
         tilemap_tileset(_tilemap, tst_tower_b);
 }
@@ -148,7 +163,7 @@ global.food_got = false;
 global.round = scr_get_round(room);
 cam_free_x = false;
 cam_free_y = false;
-surf_gui = noone;
+surf_gui = -4;
 get_cams(0);
 camx_last = camx;
 alarm[2] = 1;
@@ -216,7 +231,7 @@ if (global.stage == 7)
     display_highscore = false;
 
 bossfight = false;
-stage_event = noone;
+stage_event = -4;
 timer_dollars_flash = 0;
 timer_bridget = 1;
 timer_bridget_finish = 2;
@@ -239,38 +254,34 @@ timer[timer_win] = -1;
 timer_func[timer_win] = function()
 {
     var _room, _file;
-    
+
     if (room == global.stages_tutorial[array_length(global.stages_tutorial) - 1])
     {
         if (global.bside)
             _room = rm_round_b1;
         else
             _room = rm_round_1;
-        
+
         var _str = room_get_name(_room);
         _file = $"stages/{directory_get(global.bside)}/{_str}.json";
     }
     else if (array_contains(global.stages_final, room))
-    {
         _room = rm_cutscene_ending;
-    }
     else
     {
         var _tutorial = false;
         var _stages;
-        
+
         if (array_contains(global.stages_tutorial, room))
         {
             _stages = global.stages_tutorial;
             _tutorial = true;
         }
         else
-        {
             _stages = global.stages;
-        }
-        
+
         var _str;
-        
+
         for (var i = 0; i < array_length(_stages); i++)
         {
             if (_tutorial)
@@ -287,13 +298,13 @@ timer_func[timer_win] = function()
                 break;
             }
         }
-        
+
         _file = $"stages/{directory_get(global.bside)}/{_str}.json";
         _room = asset_get_index(_str);
     }
-    
+
     var _cutscene = undefined;
-    
+
     if (room == rm_bonus_1 || room == rm_bonus_b1)
         _cutscene = rm_cutscene_city;
     else if (room == rm_bonus_2)
@@ -302,43 +313,43 @@ timer_func[timer_win] = function()
         _cutscene = rm_cutscene_factory;
     else if (array_contains(global.stages_final, room))
         _cutscene = rm_cutscene_ending;
-    
+
     var _delay = 45;
-    
+
     if (_cutscene || _room == rm_bonus_1 || _room == rm_bonus_b1 || _room == rm_bonus_2 || _room == rm_bonus_b2 || _room == rm_bonus_3 || _room == rm_bonus_b3)
     {
         if (_cutscene)
             _delay = 180;
         else
             _delay = 300;
-        
+
         with (obj_bonus_controller)
             audio_sound_gain(bgm_play, 0, 1500);
-        
+
         audio_sound_gain(global.bgmPlay, 0, 1500);
-        
+
         if (_cutscene)
             _room = _cutscene;
     }
-    
+
     if (room == global.stages_tutorial[array_length(global.stages_tutorial) - 1])
     {
         _room = rm_round_1;
         _delay = 120;
         audio_sound_gain(global.bgmPlay, 0, 1500);
     }
-    
+
     if (room_exists(_room))
     {
         global.stage_load = _file;
         audio_sound_gain(snd_explosion, 0, 1500);
-        
+
         if (array_contains(global.stages_final_scroll, room))
             _room = rm_gotime;
-        
+
         if (room == rm_outskirts_3 || room == rm_outskirts_b3)
             _delay = 180;
-        
+
         var _trans = room_goto_triangles(_room, _delay);
         
         _trans.func_roomend = function()
@@ -347,11 +358,11 @@ timer_func[timer_win] = function()
             part_particles_clear(global.part_gui);
             part_particles_clear(global.part_over);
             part_particles_clear(global.part_over_nostun);
-            
+
             if (audio_is_playing(snd_explosion))
                 audio_stop_sound(snd_explosion);
-            
-            audio_sound_gain(snd_explosion, 1, 0);
+
+            audio_sound_gain(snd_explosion, 1 * global.master_vol * global.sfx_vol, 0);
         };
         
         if (stage_event == "wizard" && !instance_exists(obj_round_clear))
@@ -364,7 +375,7 @@ timer_func[timer_win] = function()
     {
         audio_sound_gain(global.bgmPlay, 0, 1200);
         var _trans;
-        
+
         if (stage_event == "wizard")
             _trans = room_goto_triangles(rm_nothing, 30);
         else
@@ -427,7 +438,7 @@ var _past_act_1;
 if (array_contains(global.wizard_events_total, room))
 {
     _past_act_1 = false;
-    
+
     for (var i = 0; i < array_length(global.wizard_events); i++)
     {
         for (var j = 0; j < array_length(global.wizard_events[i][global.bside]); j++)
@@ -435,10 +446,10 @@ if (array_contains(global.wizard_events_total, room))
             if (room == global.wizard_events[i][global.bside][j])
             {
                 global.boss_hp = 3 - j;
-                
+
                 if (j > 0)
                     _past_act_1 = true;
-                
+
                 break;
             }
         }
@@ -446,13 +457,11 @@ if (array_contains(global.wizard_events_total, room))
 }
 
 if (array_contains(global.bonus_rooms, room))
-{
     instance_create_layer(0, 0, "Transition", obj_stagestart_bonus);
-}
 else if (global.last_room == room)
 {
     var _trans = instance_create_layer(0, 0, "Transition", obj_transition_fade);
-    
+
     with (_trans)
     {
         fade_alpha = 1;
@@ -463,7 +472,7 @@ else if (global.last_room == room)
 else if (((stage_event == "wizard" && _past_act_1) || array_contains(global.stages_final, room)) && !array_contains(global.stages_outskirts, room))
 {
     var _trans = instance_create_layer(0, 0, "Transition", obj_transition_fade);
-    
+
     with (_trans)
     {
         fade_alpha = 1;
@@ -472,9 +481,7 @@ else if (((stage_event == "wizard" && _past_act_1) || array_contains(global.stag
     }
 }
 else
-{
     instance_create_layer(0, 0, "Transition", obj_stagestart);
-}
 
 tv_bg_ind = 0;
 fps_caption_timer = 5;
@@ -568,7 +575,7 @@ if (instance_exists(obj_cambarrierD))
 else
     barrierD = room_height - 64;
 
-global.hurt = noone;
+global.hurt = -4;
 channel = 1;
 tv_script[0] = asset_get_index("scr_tv_static");
 tv_script[1] = asset_get_index("scr_tv_bridget");
@@ -603,7 +610,7 @@ draw_bombcounter = function()
     var _pos = spark_pos;
     var _x = path_get_x(pth_gui_bombfuse, _pos);
     var _y = path_get_y(pth_gui_bombfuse, _pos);
-    
+
     if (room == rm_tutorial_7)
     {
     }
@@ -615,14 +622,14 @@ draw_bombcounter = function()
         draw_sprite_gui(spr_ui_bomb_fuse, spark_pos * sprite_get_number(spr_ui_bomb_fuse), _bombX, _bombY);
         draw_sprite_gui(spr_ui_bombSpark, bombfuse_ind, _x, _y);
     }
-    
+
     _x = 42;
     _y = 424;
-    
+
     if (string_length(string(boms_left)) == 1)
     {
         var _shakex, _shakey;
-        
+
         if (exit_freeze())
         {
             _shakex = 0;
@@ -633,16 +640,16 @@ draw_bombcounter = function()
             _shakex = irandom_range(-boms_leftOffset, boms_leftOffset);
             _shakey = irandom_range(-boms_leftOffset, boms_leftOffset);
         }
-        
+
         draw_set_font(obj_persistent.font_bombmiddle);
-        
+
         if (room != rm_tutorial_7)
             draw_text(1436 + global.app_xoff + 50 + _shakex, _y + _shakey, string(boms_left));
     }
     else
     {
         var _shakex, _shakey;
-        
+
         if (exit_freeze())
         {
             _shakex = 0;
@@ -653,12 +660,12 @@ draw_bombcounter = function()
             _shakex = irandom_range(-boms_leftOffset, boms_leftOffset);
             _shakey = irandom_range(-boms_leftOffset, boms_leftOffset);
         }
-        
+
         draw_set_font(obj_persistent.font_bombleft);
-        
+
         if (room != rm_tutorial_7)
             draw_text(1436 + global.app_xoff + _x + _shakex + 6, _y + _shakey, string_char_at(string(boms_left), 1));
-        
+
         if (exit_freeze())
         {
             _shakex = 0;
@@ -669,12 +676,12 @@ draw_bombcounter = function()
             _shakex = irandom_range(-boms_leftOffset, boms_leftOffset);
             _shakey = irandom_range(-boms_leftOffset, boms_leftOffset);
         }
-        
+
         draw_set_font(obj_persistent.font_bombright);
-        
+
         if (room != rm_tutorial_7)
             draw_text(1512 + global.app_xoff + _x + _shakex + 2, _y + 8 + _shakey, string_char_at(string(boms_left), 2));
-        
+
         draw_sprite_gui(spr_ui_bomb, 1, _bombX, _bombY);
     }
 };
@@ -684,22 +691,22 @@ global.food[global.act - 1] = false;
 draw_wizardui = function()
 {
     var _spr = spr_ui_bosshp;
-    
+
     if (array_contains(global.stages_outskirts, room))
         _spr = spr_ui_bosshp_tower;
     else
         _spr = spr_ui_bosshp;
-    
+
     var _ind;
-    
+
     if (array_contains(global.stages_final, room) || array_contains(global.stages_final_scroll, room))
         _ind = 2;
     else
         _ind = 3 - global.boss_hp;
-    
+
     if (instance_exists(obj_final_blow))
         _ind = 3;
-    
+
     draw_sprite_gui(_spr, _ind, 1398, 915);
     global.combo_meter = 0;
 };
@@ -710,7 +717,7 @@ draw_combometer_icon = function()
     var _y = 928;
     draw_sprite_gui(spr_ui_meter_icon, 0, _x, _y);
     draw_sprite_gui(spr_ui_meter_icon, 1, _x, _y);
-    
+
     if (meter_icon_flash)
         draw_sprite_gui_ext(spr_ui_meter_icon, 2, _x, _y, 1, 1, 0, 16777215, 0.1);
 };
@@ -723,10 +730,8 @@ draw_combometer = function()
         meter_icon_flash = false;
     }
     else if (timer[timer_meter_icon_flash] == -1)
-    {
         timer[timer_meter_icon_flash] = 6;
-    }
-    
+
     var _spr = spr_ui_meter;
     var _x = 1433;
     var _y = 950;
@@ -740,7 +745,7 @@ draw_combometer = function()
     _col = 16777215;
     draw_sprite_part_ext(_spr, 1, _left, _top, _width * _fill, _height, _x, _y, 1, 1, _col, 1);
     draw_sprite(spr_ui_meter_overlay, 0, _x + 2, _y + 3);
-    
+
     if (meter_icon_flash)
         draw_sprite_part_ext(_spr, 0, _left, _top, _width, _height, _x, _y, 1, 1, c_white, 0.1);
 };
@@ -769,7 +774,7 @@ draw_bossui = function()
 };
 
 var _bg = instance_create_layer(0, 0, "BG", obj_bg);
-view_surf = noone;
+view_surf = -4;
 timer[timer_cam_go] = -1;
 
 timer_func[timer_cam_go] = function()
@@ -796,7 +801,7 @@ event_final_jello = function()
 {
     if (jello_bounced)
         exit;
-    
+
     jello_bounced = true;
     cam_final_vspd = -10;
 };

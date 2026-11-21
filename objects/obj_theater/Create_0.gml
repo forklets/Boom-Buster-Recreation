@@ -2,7 +2,7 @@ event_inherited();
 bside_last = global.bside;
 global.bside = false;
 bside = false;
-my_room = noone;
+my_room = -4;
 gone = false;
 
 event_back = function()
@@ -16,21 +16,25 @@ event_back = function()
 var _opening = function()
 {
     my_room = rm_cutscene_opening;
+    bside = false;
 };
 
 var _city = function()
 {
     my_room = rm_cutscene_city;
+    bside = false;
 };
 
 var _mall = function()
 {
     my_room = rm_cutscene_mall;
+    bside = false;
 };
 
 var _factory = function()
 {
     my_room = rm_cutscene_factory;
+    bside = false;
 };
 
 var _cityB = function()
@@ -54,6 +58,7 @@ var _factoryB = function()
 var _ending = function()
 {
     my_room = rm_cutscene_ending;
+    bside = false;
 };
 
 var _back = function()

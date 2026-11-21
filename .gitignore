@@ -6,4 +6,4 @@ fonts/**/*.png
 sounds/**/*.wav
 sounds/**/*.ogg
 sounds/**/*.mp3
-gather_assets_log.txt
+output/

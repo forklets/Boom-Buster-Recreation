@@ -7,15 +7,15 @@ with (obj_bom)
 {
     var _hey = max(hey_scale, 1);
     var _heyyoff = (_hey * (sprite_get_yoffset(anim_sprite) / 2)) - (sprite_get_yoffset(anim_sprite) / 2);
-    
-    if (!inPipe && carried == noone)
+
+    if (!inPipe && carried == -4)
     {
         if (x < (_camx + 32))
         {
             draw_sprite_ext(spr_heyR, _heyInd, _camx + 32, (y + carry_yoff + _heyyoff) - 29, _hey * xscale_squish, _hey * yscale_squish, 0, c_white, 1);
             draw_sprite_ext(anim_sprite, anim_index, _camx + 32, y + carry_yoff + _heyyoff, _hey * xscale_squish, _hey * yscale_squish, 0, c_white, 1);
         }
-        
+
         if (x > ((_camx + _camw) - 32))
         {
             draw_sprite_ext(spr_heyL, _heyInd, (_camx + _camw) - 32, (y + carry_yoff + _heyyoff) - 29, _hey * xscale_squish, _hey * yscale_squish, 0, c_white, 1);
@@ -28,13 +28,13 @@ with (obj_fireball)
 {
     var _hey = max(hey_scale, 1);
     var _heyyoff = (_hey * (sprite_get_yoffset(anim_sprite) / 2)) - (sprite_get_yoffset(anim_sprite) / 2);
-    
+
     if (x < (_camx + 32) && hspd > 0)
     {
         draw_sprite_ext(spr_heyR, _heyInd, _camx + 32, y + _heyyoff, _hey, _hey, 0, c_white, 1);
         draw_sprite_ext(anim_sprite, anim_index, _camx + 32, y + _heyyoff, _hey, _hey, 0, c_white, 1);
     }
-    
+
     if (x > ((_camx + _camw) - 32) && hspd < 0)
     {
         draw_sprite_ext(spr_heyL, _heyInd, (_camx + _camw) - 32, y + _heyyoff, _hey, _hey, 0, c_white, 1);
@@ -46,4 +46,13 @@ if (array_contains(global.stages_final, room))
 {
     get_cams();
     draw_sprite_ext(spr_ending_lighting, 0, camx, camy, 1, 1, 0, c_white, 0.3);
+}
+
+if (array_contains(global.stages_final_scroll, room))
+{
+    var _col = 3473432;
+    get_cams();
+    draw_set_alpha(0.15);
+    draw_rectangle_color(camx, camy, camx + 1408, camy + 1080, _col, _col, _col, _col, false);
+    draw_set_alpha(1);
 }

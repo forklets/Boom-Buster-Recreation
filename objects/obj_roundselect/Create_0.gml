@@ -1,3 +1,4 @@
+scr_check_all_foods();
 deac = false;
 rounds[0] = [[rm_round_1, rm_round_b1], [rm_round_2, rm_round_b2], [rm_round_3, rm_round_b3], [rm_round_4, rm_round_b4], [rm_round_5, rm_round_b5], [rm_round_6, rm_round_b6], [rm_round_7_1, rm_round_b7_1]];
 rounds[1] = [[rm_round_8, rm_round_b8], [rm_round_9, rm_round_b9], [rm_round_10, rm_round_b10], [rm_mall_extra1, rm_mall_extrab1], [rm_round_11, rm_round_b11], [rm_round_12, rm_round_b12], [rm_round_13, rm_round_b13], [rm_round_14_1, rm_round_b14_1]];
@@ -18,7 +19,7 @@ round_dollars = 0;
 if (global.debug)
 {
     global.save.stages_beat = [];
-    
+
     for (var i = 0; i < array_length(global.stages); i++)
     {
         array_push(global.save.stages_beat, room_get_name(global.stages[i][0]));
@@ -26,4 +27,4 @@ if (global.debug)
     }
 }
 
-voice_play = noone;
+voice_play = -4;

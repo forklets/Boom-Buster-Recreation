@@ -1,351 +1,260 @@
-// pulls the sprites, tilesets, fonts and sounds out of your copy of boom buster and puts them in the project
-// needs undertalemodtool 0.9.0.0 or newer
-//
-// 1. open the game's data.win in utmt (keep ag_bgm.dat next to it)
-// 2. scripts > run other script... > pick this file
-// 3. when it asks, pick the project folder (the one with BusterBeta.yyp in it)
+// fills this project back in with boom buster's art, sounds and included files from your copy of the game
+// needs utmt 0.9+. open the game's data.win (with ag_bgm.dat next to it) and run this
 
 using System;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Collections.Concurrent;
+using System.Text.RegularExpressions;
 using ImageMagick;
 using UndertaleModLib.Util;
 
 EnsureDataLoaded();
 
-ScriptMessage("pick the boom buster project folder next (the one with BusterBeta.yyp in it)");
-string projectDir = PromptChooseDirectory();
-if (projectDir is null)
-    return;
-
-if (!File.Exists(Path.Combine(projectDir, "BusterBeta.yyp")))
+string version = Data.GeneralInfo.DisplayName.Content;
+if (!version.StartsWith("BOOM! Buster") || !version.EndsWith("1.0.8.3"))
 {
-    ScriptError("couldn't find BusterBeta.yyp in that folder. pick the project folder itself, not one inside it");
+    ScriptError($"this project is synced to boom buster 1.0.8.3 but that data.win is \"{version}\". update the game on steam first");
     return;
 }
 
-string gameDir = Path.GetDirectoryName(FilePath);
-var jsonOptions = new JsonDocumentOptions { AllowTrailingCommas = true, CommentHandling = JsonCommentHandling.Skip };
-var missing = new List<string>();
-var warnings = new List<string>();
+string proj = FindProject();
+if (proj == null)
+    return;
+
+string game = Path.GetDirectoryName(FilePath);
+var missing = new ConcurrentBag<string>();
 int written = 0;
+var started = DateTime.Now;
 
-var dataSprites = Data.Sprites.Where(s => s?.Name is not null).GroupBy(s => s.Name.Content, StringComparer.OrdinalIgnoreCase).ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase);
-var dataSounds = Data.Sounds.Where(s => s?.Name is not null).GroupBy(s => s.Name.Content, StringComparer.OrdinalIgnoreCase).ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase);
-var dataFonts = Data.Fonts.Where(f => f?.Name is not null).GroupBy(f => f.Name.Content, StringComparer.OrdinalIgnoreCase).ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase);
-var dataTilesets = Data.Backgrounds.Where(b => b?.Name is not null).GroupBy(b => b.Name.Content, StringComparer.OrdinalIgnoreCase).ToDictionary(g => g.Key, g => g.First(), StringComparer.OrdinalIgnoreCase);
-
-JsonElement ReadYY(string path)
+var steps = new (string label, Action run)[]
 {
-    using var doc = JsonDocument.Parse(File.ReadAllText(path), jsonOptions);
-    return doc.RootElement.Clone();
-}
+    ("sprites", Sprites),
+    ("tilesets", Tilesets),
+    ("fonts", Fonts),
+    ("sounds", Sounds),
+    ("included files", IncludedFiles),
+};
 
-List<string> Names(JsonElement yy, string arrayKey)
-{
-    var list = new List<string>();
-    if (yy.TryGetProperty(arrayKey, out JsonElement arr) && arr.ValueKind == JsonValueKind.Array)
-        foreach (JsonElement e in arr.EnumerateArray())
-            list.Add(e.GetProperty("name").GetString());
-    return list;
-}
-
-IEnumerable<string> AssetDirs(string type)
-{
-    string dir = Path.Combine(projectDir, type);
-    if (!Directory.Exists(dir))
-        return Enumerable.Empty<string>();
-    return Directory.GetDirectories(dir).Where(d => File.Exists(Path.Combine(d, Path.GetFileName(d) + ".yy")));
-}
-
-MagickImage Blank(int width, int height) => new MagickImage(MagickColor.FromRgba(0, 0, 0, 0), (uint)Math.Max(width, 1), (uint)Math.Max(height, 1));
-
-IMagickImage<byte> FitTo(IMagickImage<byte> img, int width, int height)
-{
-    if ((int)img.Width == width && (int)img.Height == height)
-        return img;
-    var canvas = Blank(width, height);
-    canvas.Composite(img, 0, 0, CompositeOperator.Copy);
-    img.Dispose();
-    return canvas;
-}
-
-void SaveSpriteFrames(string spriteDir, JsonElement yy, Func<int, IMagickImage<byte>> getFrame)
-{
-    var frames = Names(yy, "frames");
-    var layers = Names(yy, "layers");
-    for (int i = 0; i < frames.Count; i++)
-    {
-        string framePath = Path.Combine(spriteDir, frames[i] + ".png");
-        using (IMagickImage<byte> img = getFrame(i))
-            TextureWorker.SaveImageToFile(img, framePath);
-        written++;
-
-        foreach (string layer in layers)
-        {
-            string layerDir = Path.Combine(spriteDir, "layers", frames[i]);
-            Directory.CreateDirectory(layerDir);
-            File.Copy(framePath, Path.Combine(layerDir, layer + ".png"), true);
-            written++;
-        }
-    }
-}
-
-var tilesetSprites = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-foreach (string dir in AssetDirs("tilesets"))
-{
-    JsonElement yy = ReadYY(Path.Combine(dir, Path.GetFileName(dir) + ".yy"));
-    if (yy.TryGetProperty("spriteId", out JsonElement sid) && sid.ValueKind == JsonValueKind.Object)
-        tilesetSprites.Add(sid.GetProperty("name").GetString());
-}
-
-var spriteDirs = AssetDirs("sprites").ToList();
-var soundDirs = AssetDirs("sounds").ToList();
-var fontDirs = AssetDirs("fonts").ToList();
-var tilesetDirs = AssetDirs("tilesets").ToList();
-
-SetProgressBar(null, "Gathering assets", 0, spriteDirs.Count + soundDirs.Count + fontDirs.Count + tilesetDirs.Count);
+SetProgressBar(null, steps[0].label, 0, steps.Length);
 StartProgressBarUpdater();
-
 await Task.Run(() =>
 {
-    using TextureWorker worker = new();
-
-    foreach (string dir in spriteDirs)
+    foreach (var step in steps)
     {
-        string name = Path.GetFileName(dir);
-        try
-        {
-            if (tilesetSprites.Contains(name))
-                continue;
-
-            JsonElement yy = ReadYY(Path.Combine(dir, name + ".yy"));
-            int width = yy.GetProperty("width").GetInt32();
-            int height = yy.GetProperty("height").GetInt32();
-
-            if (!dataSprites.TryGetValue(name, out UndertaleSprite sprite))
-            {
-                missing.Add($"sprite {name}");
-                continue;
-            }
-
-            int frameCount = Names(yy, "frames").Count;
-            if (frameCount != sprite.Textures.Count)
-                warnings.Add($"sprite {name}: project has {frameCount} frames, game has {sprite.Textures.Count}");
-
-            SaveSpriteFrames(dir, yy, i =>
-            {
-                UndertaleTexturePageItem tex = i < sprite.Textures.Count ? sprite.Textures[i]?.Texture : null;
-                if (tex is null)
-                    return Blank(width, height);
-                return FitTo(worker.GetTextureFor(tex, $"{name} (frame {i})", true), width, height);
-            });
-        }
-        catch (Exception e)
-        {
-            warnings.Add($"sprite {name}: {e.Message}");
-        }
-        finally
-        {
-            IncrementProgressParallel();
-        }
-    }
-
-    foreach (string dir in tilesetDirs)
-    {
-        string name = Path.GetFileName(dir);
-        try
-        {
-            JsonElement yy = ReadYY(Path.Combine(dir, name + ".yy"));
-            IMagickImage<byte> tileImgSource;
-            if (dataTilesets.TryGetValue(name, out UndertaleBackground bg) && bg.Texture is not null)
-            {
-                tileImgSource = worker.GetTextureFor(bg.Texture, name, true);
-            }
-            else
-            {
-                int columns = Math.Max(yy.GetProperty("out_columns").GetInt32(), 1);
-                int count = Math.Max(yy.GetProperty("tile_count").GetInt32(), 1);
-                int cellW = yy.GetProperty("tileWidth").GetInt32() + 2 * yy.GetProperty("out_tilehborder").GetInt32();
-                int cellH = yy.GetProperty("tileHeight").GetInt32() + 2 * yy.GetProperty("out_tilevborder").GetInt32();
-                tileImgSource = Blank(columns * cellW, (count + columns - 1) / columns * cellH);
-                warnings.Add($"tileset {name}: the game doesn't have an image for this one so it got a blank one");
-            }
-
-            using IMagickImage<byte> tileImg = tileImgSource;
-            TextureWorker.SaveImageToFile(tileImg, Path.Combine(dir, "output_tileset.png"));
-            written++;
-
-            string spriteName = yy.GetProperty("spriteId").GetProperty("name").GetString();
-            string spriteDir = Path.Combine(projectDir, "sprites", spriteName);
-            string spriteYY = Path.Combine(spriteDir, spriteName + ".yy");
-            if (!File.Exists(spriteYY))
-                continue;
-
-            JsonElement syy = ReadYY(spriteYY);
-            int width = syy.GetProperty("width").GetInt32();
-            int height = syy.GetProperty("height").GetInt32();
-            bool sameSize = (int)tileImg.Width == width && (int)tileImg.Height == height;
-
-            SaveSpriteFrames(spriteDir, syy, i => sameSize ? (IMagickImage<byte>)tileImg.Clone() : Blank(width, height));
-        }
-        catch (Exception e)
-        {
-            warnings.Add($"tileset {name}: {e.Message}");
-        }
-        finally
-        {
-            IncrementProgressParallel();
-        }
-    }
-
-    foreach (string dir in fontDirs)
-    {
-        string name = Path.GetFileName(dir);
-        try
-        {
-            if (!dataFonts.TryGetValue(name, out UndertaleFont font) || font.Texture is null)
-            {
-                missing.Add($"font {name}");
-                continue;
-            }
-            worker.ExportAsPNG(font.Texture, Path.Combine(dir, name + ".png"));
-            written++;
-        }
-        catch (Exception e)
-        {
-            warnings.Add($"font {name}: {e.Message}");
-        }
-        finally
-        {
-            IncrementProgressParallel();
-        }
+        UpdateProgressStatus(step.label);
+        step.run();
+        IncrementProgress();
     }
 });
-
-var audioGroups = new Dictionary<string, IList<UndertaleEmbeddedAudio>>(StringComparer.OrdinalIgnoreCase);
-
-IList<UndertaleEmbeddedAudio> GetAudioGroup(UndertaleSound sound)
-{
-    string groupName = sound.AudioGroup?.Name?.Content ?? $"audiogroup{sound.GroupID}";
-    if (audioGroups.TryGetValue(groupName, out var cached))
-        return cached;
-
-    var candidates = new List<string>();
-    if (sound.AudioGroup?.Path?.Content is string customPath && customPath.Length > 0)
-        candidates.Add(customPath);
-    candidates.Add(groupName + ".dat");
-    candidates.Add($"audiogroup{sound.GroupID}.dat");
-
-    foreach (string rel in candidates)
-    {
-        string path = Path.Combine(gameDir, rel);
-        if (!File.Exists(path))
-            continue;
-        using var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
-        UndertaleData groupData = UndertaleIO.Read(stream, (warning, _) => warnings.Add($"{rel}: {warning}"));
-        audioGroups[groupName] = groupData.EmbeddedAudio;
-        return groupData.EmbeddedAudio;
-    }
-
-    audioGroups[groupName] = null;
-    return null;
-}
-
-byte[] GetSoundBytes(UndertaleSound sound)
-{
-    if (sound.AudioFile is not null)
-        return sound.AudioFile.Data;
-
-    if (sound.GroupID > Data.GetBuiltinSoundGroupID() && sound.AudioID >= 0)
-    {
-        var group = GetAudioGroup(sound);
-        if (group is not null && sound.AudioID < group.Count)
-            return group[sound.AudioID].Data;
-    }
-
-    if (sound.File?.Content is string ext && ext.Length > 0)
-    {
-        string external = ext.Contains('.') ? ext : ext + ".ogg";
-        string path = Path.Combine(gameDir, external);
-        if (File.Exists(path))
-            return File.ReadAllBytes(path);
-    }
-
-    return null;
-}
-
-await Task.Run(() =>
-{
-    foreach (string dir in soundDirs)
-    {
-        string name = Path.GetFileName(dir);
-        try
-        {
-            string yyPath = Path.Combine(dir, name + ".yy");
-            JsonElement yy = ReadYY(yyPath);
-            string soundFile = yy.TryGetProperty("soundFile", out JsonElement sf) ? sf.GetString() : name + ".wav";
-
-            byte[] bytes = dataSounds.TryGetValue(name, out UndertaleSound sound) ? GetSoundBytes(sound) : null;
-            if (bytes is null || bytes.Length == 0)
-            {
-                missing.Add($"sound {name}");
-                continue;
-            }
-
-            bool isOgg = bytes.Length > 4 && bytes[0] == 'O' && bytes[1] == 'g' && bytes[2] == 'g' && bytes[3] == 'S';
-            string wantedExt = isOgg ? ".ogg" : ".wav";
-            if (!string.Equals(Path.GetExtension(soundFile), wantedExt, StringComparison.OrdinalIgnoreCase))
-            {
-                string newFile = Path.GetFileNameWithoutExtension(soundFile) + wantedExt;
-                string text = File.ReadAllText(yyPath);
-                File.WriteAllText(yyPath, text.Replace($"\"soundFile\":\"{soundFile}\"", $"\"soundFile\":\"{newFile}\""));
-                warnings.Add($"sound {name}: game data is {wantedExt}, soundFile changed to {newFile}");
-                soundFile = newFile;
-            }
-
-            File.WriteAllBytes(Path.Combine(dir, soundFile), bytes);
-            written++;
-        }
-        catch (Exception e)
-        {
-            warnings.Add($"sound {name}: {e.Message}");
-        }
-        finally
-        {
-            IncrementProgressParallel();
-        }
-    }
-});
-
 await StopProgressBarUpdater();
 HideProgressBar();
 
-var report = new StringBuilder();
-report.AppendLine($"wrote {written} files into {projectDir}");
-if (missing.Count > 0)
+string report = $"{written} files in {(DateTime.Now - started).TotalSeconds:0}s, you can open BusterBeta.yyp now";
+if (!missing.IsEmpty)
+    report += "\n\nthese weren't in the data.win:\n" + string.Join("\n", missing.OrderBy(m => m));
+ScriptMessage(report);
+
+
+// the script sits in tools/, so try the folder above it before asking
+string FindProject()
 {
-    report.AppendLine();
-    report.AppendLine($"couldn't find these in the game data ({missing.Count}):");
-    foreach (string m in missing)
-        report.AppendLine("  " + m);
-}
-if (warnings.Count > 0)
-{
-    report.AppendLine();
-    report.AppendLine($"warnings ({warnings.Count}):");
-    foreach (string w in warnings)
-        report.AppendLine("  " + w);
+    try
+    {
+        string guess = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(ScriptPath), ".."));
+        if (File.Exists(Path.Combine(guess, "BusterBeta.yyp")))
+            return guess;
+    }
+    catch { }
+
+    ScriptMessage("couldn't tell where the project is, pick the folder with BusterBeta.yyp in it");
+    string picked = PromptChooseDirectory();
+    if (picked != null && !File.Exists(Path.Combine(picked, "BusterBeta.yyp")))
+    {
+        ScriptError("no BusterBeta.yyp in that folder");
+        return null;
+    }
+    return picked;
 }
 
-File.WriteAllText(Path.Combine(projectDir, "gather_assets_log.txt"), report.ToString());
+string[] Assets(string kind) => Directory.GetDirectories(Path.Combine(proj, kind));
+string Meta(string dir) => File.ReadAllText(Path.Combine(dir, Path.GetFileName(dir) + ".yy"));
+int Int(string meta, string key) => int.Parse(Regex.Match(meta, $"\"{key}\":(\\d+)").Groups[1].Value);
+string Link(string meta, string key) => Regex.Match(meta, $"\"{key}\":\\{{\\s*\"name\":\"([^\"]+)\"").Groups[1].Value;
+string[] Names(string meta, string kind) => Regex.Matches(meta, $"\"\\${kind}\":\"[^\"]*\",\"%Name\":\"([^\"]+)\"").Select(m => m.Groups[1].Value).ToArray();
 
-string summary = report.ToString();
-if (summary.Length > 3000)
-    summary = summary.Substring(0, 3000) + "\n...\n(the rest is in gather_assets_log.txt)";
-ScriptMessage(summary);
+void Empty(string path, int w, int h)
+{
+    using var img = new MagickImage(MagickColors.Transparent, (uint)Math.Max(w, 1), (uint)Math.Max(h, 1));
+    TextureWorker.SaveImageToFile(img, path);
+}
+
+// gamemaker wants each frame twice, once on its own and once per image layer
+string[] Targets(string dir, string meta, string frame)
+{
+    var list = new List<string> { Path.Combine(dir, frame + ".png") };
+    foreach (string layer in Names(meta, "GMImageLayer"))
+    {
+        Directory.CreateDirectory(Path.Combine(dir, "layers", frame));
+        list.Add(Path.Combine(dir, "layers", frame, layer + ".png"));
+    }
+    return list.ToArray();
+}
+
+void Spread(string[] targets)
+{
+    for (int i = 1; i < targets.Length; i++)
+        File.Copy(targets[0], targets[i], true);
+    Interlocked.Add(ref written, targets.Length);
+}
+
+void Sprites()
+{
+    // sprites behind tilesets don't exist in data.win, Tilesets() handles those
+    var skip = Assets("tilesets").Select(d => Link(Meta(d), "spriteId")).ToHashSet();
+    var work = new List<(UndertaleTexturePageItem tex, int w, int h, string[] targets)>();
+
+    foreach (string dir in Assets("sprites").Where(d => !skip.Contains(Path.GetFileName(d))))
+    {
+        var sprite = Data.Sprites.ByName(Path.GetFileName(dir), true);
+        if (sprite == null)
+        {
+            missing.Add(Path.GetFileName(dir));
+            continue;
+        }
+        string meta = Meta(dir);
+        string[] frames = Names(meta, "GMSpriteFrame");
+        for (int i = 0; i < frames.Length; i++)
+            work.Add((i < sprite.Textures.Count ? sprite.Textures[i]?.Texture : null, Int(meta, "width"), Int(meta, "height"), Targets(dir, meta, frames[i])));
+    }
+
+    // frames on the same texture page share a worker so that page is only decoded once
+    Parallel.ForEach(work.GroupBy(w => w.tex?.TexturePage), new ParallelOptions { MaxDegreeOfParallelism = Math.Max(1, Environment.ProcessorCount / 2) }, page =>
+    {
+        using var worker = new TextureWorker();
+        foreach (var w in page)
+        {
+            if (w.tex == null)
+                Empty(w.targets[0], w.w, w.h);
+            else
+                worker.ExportAsPNG(w.tex, w.targets[0], null, true);
+            Spread(w.targets);
+        }
+    });
+}
+
+void Tilesets()
+{
+    using var worker = new TextureWorker();
+    foreach (string dir in Assets("tilesets"))
+    {
+        string meta = Meta(dir), image = Path.Combine(dir, "output_tileset.png");
+        var tex = Data.Backgrounds.ByName(Path.GetFileName(dir), true)?.Texture;
+
+        if (tex != null)
+            worker.ExportAsPNG(tex, image, null, true);
+        else
+        {
+            int cols = Int(meta, "out_columns"), rows = (Int(meta, "tile_count") + cols - 1) / cols;
+            Empty(image, cols * (Int(meta, "tileWidth") + 2 * Int(meta, "out_tilehborder")), rows * (Int(meta, "tileHeight") + 2 * Int(meta, "out_tilevborder")));
+        }
+        written++;
+
+        // and the sprite it's built from is the same picture
+        string spriteDir = Path.Combine(proj, "sprites", Link(meta, "spriteId")), spriteMeta = Meta(spriteDir);
+        foreach (string frame in Names(spriteMeta, "GMSpriteFrame"))
+        {
+            string[] targets = Targets(spriteDir, spriteMeta, frame);
+            if (tex != null)
+                File.Copy(image, targets[0], true);
+            else
+                Empty(targets[0], Int(spriteMeta, "width"), Int(spriteMeta, "height"));
+            Spread(targets);
+        }
+    }
+}
+
+void Fonts()
+{
+    using var worker = new TextureWorker();
+    foreach (string dir in Assets("fonts"))
+    {
+        string name = Path.GetFileName(dir);
+        var tex = Data.Fonts.ByName(name, true)?.Texture;
+        if (tex == null)
+        {
+            missing.Add(name);
+            continue;
+        }
+        worker.ExportAsPNG(tex, Path.Combine(dir, name + ".png"));
+        written++;
+    }
+}
+
+void Sounds()
+{
+    // most sounds are inside data.win, the music is in ag_bgm.dat, anything else is loose in the game folder
+    var groupCache = new Dictionary<string, IList<UndertaleEmbeddedAudio>>();
+    IList<UndertaleEmbeddedAudio> GroupOf(UndertaleSound s)
+    {
+        string name = s.AudioGroup?.Name?.Content ?? $"audiogroup{s.GroupID}";
+        if (!groupCache.ContainsKey(name))
+        {
+            string file = new[] { s.AudioGroup?.Path?.Content, name + ".dat", $"audiogroup{s.GroupID}.dat" }
+                .Where(f => !string.IsNullOrEmpty(f)).Select(f => Path.Combine(game, f)).FirstOrDefault(File.Exists);
+            using var stream = file == null ? null : File.OpenRead(file);
+            groupCache[name] = stream == null ? null : UndertaleIO.Read(stream, (w, _) => { }).EmbeddedAudio;
+        }
+        return groupCache[name];
+    }
+
+    foreach (string dir in Assets("sounds"))
+    {
+        string name = Path.GetFileName(dir);
+        string file = Regex.Match(Meta(dir), "\"soundFile\":\"([^\"]+)\"").Groups[1].Value;
+        var sound = Data.Sounds.ByName(name, true);
+
+        byte[] data = sound?.AudioFile?.Data;
+        if (data == null && sound?.AudioID >= 0)
+            data = GroupOf(sound)?.ElementAtOrDefault(sound.AudioID)?.Data;
+        if (data == null && sound?.File?.Content is string loose)
+        {
+            string path = Path.Combine(game, Path.HasExtension(loose) ? loose : loose + ".ogg");
+            if (File.Exists(path))
+                data = File.ReadAllBytes(path);
+        }
+
+        if (data == null || file == "")
+        {
+            missing.Add(name);
+            continue;
+        }
+        File.WriteAllBytes(Path.Combine(dir, file), data);
+        written++;
+    }
+}
+
+void IncludedFiles()
+{
+    // refresh whatever the project already has under datafiles from the copy in the game folder.
+    // line endings are ignored so git doesn't see every file as changed
+    string datafiles = Path.Combine(proj, "datafiles");
+    if (!Directory.Exists(datafiles))
+        return;
+
+    foreach (string file in Directory.GetFiles(datafiles, "*", SearchOption.AllDirectories))
+    {
+        string fromGame = Path.Combine(game, Path.GetRelativePath(datafiles, file));
+        if (!File.Exists(fromGame))
+            continue;
+
+        byte[] theirs = File.ReadAllBytes(fromGame);
+        if (theirs.Where(b => b != '\r').SequenceEqual(File.ReadAllBytes(file).Where(b => b != '\r')))
+            continue;
+        File.WriteAllBytes(file, theirs.Where(b => b != '\r').ToArray());
+        written++;
+    }
+}

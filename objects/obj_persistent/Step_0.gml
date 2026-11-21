@@ -12,8 +12,8 @@ else
     global.input_menu_special_glyph = "S";
 }
 
-if (global.debug && keyboard_check_pressed(vk_f10) && extension_exists("Steamworks"))
-    steam_reset_all_stats_achievements();
+if (keyboard_check_pressed(vk_f10) && global.debug)
+    debug_event("ResourceCounts");
 
 if (keyboard_check_pressed(vk_f3) && global.debug)
     show_debug_overlay(!is_debug_overlay_open());

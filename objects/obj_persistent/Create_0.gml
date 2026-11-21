@@ -700,7 +700,7 @@ if (file_exists(game_save_id + "save.json"))
 
 event_save = function()
 {
-    if (instance_exists(obj_controller))
+    if (instance_exists(obj_controller) && !global.round_select)
     {
         var _side;
         

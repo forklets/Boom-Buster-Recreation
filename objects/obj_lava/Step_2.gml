@@ -1,3 +1,6 @@
+if (instance_exists(obj_paused))
+    exit;
+
 if (!array_contains(global.stages_final, room))
     exit;
 
@@ -14,6 +17,6 @@ y = ((camy + 1080) - 128) + rise_y;
 
 with (obj_controller)
 {
-    if (ps_lava != noone)
+    if (ps_lava != -4)
         part_system_position(ps_lava, room_width / 2, other.y);
 }

@@ -1,475 +1,477 @@
 {
-  "stage_event":"wizard",
   "name":"Buster Dies and Goes To Super Hell",
-  "bossfight":false,
   "paths":[
   ],
   "elements":[
     {
       "x":1312.0,
       "y":448.0,
-      "spd":1.0,
       "cx":1480.0,
-      "row":0.0,
       "ind":1.0,
-      "timestamp":420.0
+      "row":0.0,
+      "timestamp":420.0,
+      "spd":1.0
     },
     {
       "x":576.0,
       "y":576.0,
       "cx":1480.0,
-      "wings":true,
-      "spd":2.0,
-      "row":0.0,
       "ind":1.0,
-      "timestamp":540.0
+      "row":0.0,
+      "timestamp":540.0,
+      "wings":true,
+      "spd":2.0
     },
     {
       "x":1056.0,
       "y":768.0,
-      "spd":1.0,
       "cx":1480.0,
-      "row":0.0,
       "ind":3.0,
-      "timestamp":660.0
+      "row":0.0,
+      "timestamp":660.0,
+      "spd":1.0
     },
     {
       "x":1568.0,
       "y":928.0,
       "cx":1560.0,
-      "wings":true,
-      "col":3.0,
-      "row":2.0,
       "ind":7.0,
-      "timestamp":780.0
+      "row":2.0,
+      "timestamp":780.0,
+      "wings":true,
+      "col":3.0
     },
     {
       "x":1568.0,
       "y":768.0,
       "cx":1480.0,
-      "col":0.0,
-      "row":7.0,
       "ind":2.0,
-      "timestamp":120.0
+      "row":7.0,
+      "timestamp":120.0,
+      "col":0.0
     },
     {
       "x":576.0,
-      "y":1024.0,
-      "cx":1700.0,
       "facing":-1.0,
-      "row":3.0,
+      "cx":1700.0,
+      "y":1024.0,
       "ind":6.0,
+      "row":3.0,
       "timestamp":960.0
     },
     {
       "x":1760.0,
       "y":400.0,
       "cx":1700.0,
-      "row":2.0,
       "ind":1.0,
+      "row":2.0,
       "timestamp":1680.0
     },
     {
       "x":864.0,
-      "y":416.0,
-      "cx":1480.0,
-      "spd":1.0,
       "chute":true,
-      "row":0.0,
+      "cx":1480.0,
+      "y":416.0,
       "ind":4.0,
-      "timestamp":1020.0
+      "row":0.0,
+      "timestamp":1020.0,
+      "spd":1.0
     },
     {
       "x":800.0,
-      "y":512.0,
-      "cx":1480.0,
-      "spd":2.0,
       "chute":true,
-      "row":0.0,
+      "cx":1480.0,
+      "y":512.0,
       "ind":4.0,
-      "timestamp":1140.0
+      "row":0.0,
+      "timestamp":1140.0,
+      "spd":2.0
     },
     {
       "x":1408.0,
       "y":448.0,
-      "spd":1.0,
       "cx":1480.0,
-      "row":0.0,
       "ind":2.0,
-      "timestamp":1320.0
+      "row":0.0,
+      "timestamp":1320.0,
+      "spd":1.0
     },
     {
       "x":1184.0,
       "y":768.0,
-      "spd":2.0,
       "cx":1480.0,
-      "row":0.0,
       "ind":2.0,
-      "timestamp":1440.0
+      "row":0.0,
+      "timestamp":1440.0,
+      "spd":2.0
     },
     {
       "x":672.0,
       "y":320.0,
-      "spd":2.0,
       "cx":1480.0,
-      "row":0.0,
       "ind":2.0,
-      "timestamp":1500.0
+      "row":0.0,
+      "timestamp":1500.0,
+      "spd":2.0
     },
     {
       "x":1312.0,
       "y":1152.0,
-      "spd":0.0,
       "cx":1480.0,
-      "row":0.0,
       "ind":0.0,
-      "timestamp":1620.0
+      "row":0.0,
+      "timestamp":1620.0,
+      "spd":0.0
     },
     {
       "x":1440.0,
       "y":1152.0,
-      "spd":2.0,
       "cx":1480.0,
-      "row":0.0,
       "ind":0.0,
-      "timestamp":1800.0
+      "row":0.0,
+      "timestamp":1800.0,
+      "spd":2.0
     },
     {
       "x":1568.0,
       "y":768.0,
       "cx":1480.0,
-      "spd":2.0,
-      "fat":true,
-      "row":0.0,
       "ind":0.0,
-      "timestamp":1860.0
+      "row":0.0,
+      "timestamp":1860.0,
+      "spd":2.0,
+      "fat":true
     },
     {
       "x":1040.0,
       "y":512.0,
       "cx":1480.0,
-      "wings":true,
-      "spd":0.0,
-      "row":0.0,
       "ind":4.0,
-      "timestamp":1980.0
+      "row":0.0,
+      "timestamp":1980.0,
+      "wings":true,
+      "spd":0.0
     },
     {
       "x":896.0,
       "y":480.0,
       "cx":1480.0,
-      "wings":true,
-      "spd":2.0,
-      "row":0.0,
       "ind":4.0,
-      "timestamp":2160.0
+      "row":0.0,
+      "timestamp":2160.0,
+      "wings":true,
+      "spd":2.0
     },
     {
       "x":1184.0,
       "y":480.0,
       "cx":1480.0,
-      "wings":true,
-      "spd":2.0,
-      "row":0.0,
       "ind":4.0,
-      "timestamp":2220.0
+      "row":0.0,
+      "timestamp":2220.0,
+      "wings":true,
+      "spd":2.0
     },
     {
       "x":448.0,
       "y":320.0,
-      "spd":2.0,
       "cx":1480.0,
-      "row":0.0,
       "ind":2.0,
-      "timestamp":2700.0
+      "row":0.0,
+      "timestamp":2700.0,
+      "spd":2.0
     },
     {
       "x":448.0,
       "y":448.0,
       "cx":1760.0,
-      "wings":true,
-      "col":2.0,
-      "row":2.0,
       "ind":7.0,
-      "timestamp":2730.0
+      "row":2.0,
+      "timestamp":2730.0,
+      "wings":true,
+      "col":2.0
     },
     {
       "x":544.0,
-      "y":544.0,
-      "cx":1480.0,
-      "spd":1.0,
       "chute":true,
-      "row":0.0,
+      "cx":1480.0,
+      "y":544.0,
       "ind":2.0,
-      "timestamp":2820.0
+      "row":0.0,
+      "timestamp":2820.0,
+      "spd":1.0
     },
     {
       "x":640.0,
-      "y":640.0,
-      "cx":1480.0,
-      "spd":2.0,
       "chute":true,
-      "row":0.0,
+      "cx":1480.0,
+      "y":640.0,
       "ind":2.0,
-      "timestamp":2940.0
+      "row":0.0,
+      "timestamp":2940.0,
+      "spd":2.0
     },
     {
       "x":1024.0,
-      "y":352.0,
-      "cx":1620.0,
       "facing":1.0,
-      "row":3.0,
+      "cx":1620.0,
+      "y":352.0,
       "ind":7.0,
+      "row":3.0,
       "timestamp":3000.0
     },
     {
       "x":1440.0,
-      "y":768.0,
-      "cx":1640.0,
       "facing":-1.0,
-      "row":3.0,
+      "cx":1640.0,
+      "y":768.0,
       "ind":5.0,
+      "row":3.0,
       "timestamp":1860.0
     },
     {
       "x":1568.0,
-      "y":768.0,
-      "cx":1640.0,
       "facing":-1.0,
-      "row":3.0,
+      "cx":1640.0,
+      "y":768.0,
       "ind":9.0,
+      "row":3.0,
       "timestamp":1200.0
     },
     {
       "x":1568.0,
       "y":928.0,
       "cx":1480.0,
-      "wings":true,
-      "col":4.0,
-      "row":2.0,
       "ind":6.0,
-      "timestamp":2280.0
+      "row":2.0,
+      "timestamp":2280.0,
+      "wings":true,
+      "col":4.0
     },
     {
       "x":928.0,
-      "y":768.0,
+      "y":608.0,
       "cx":1480.0,
-      "col":1.0,
-      "row":7.0,
       "ind":1.0,
-      "timestamp":3990.0
+      "row":7.0,
+      "timestamp":3990.0,
+      "wings":true,
+      "col":1.0
     },
     {
       "x":608.0,
       "y":320.0,
-      "spd":1.0,
       "cx":1480.0,
-      "row":0.0,
       "ind":0.0,
-      "timestamp":4200.0
+      "row":0.0,
+      "timestamp":4200.0,
+      "spd":1.0
     },
     {
       "x":1312.0,
       "y":448.0,
-      "spd":2.0,
       "cx":1480.0,
-      "row":0.0,
       "ind":0.0,
-      "timestamp":4320.0
+      "row":0.0,
+      "timestamp":4320.0,
+      "spd":2.0
     },
     {
       "x":992.0,
       "y":480.0,
       "cx":1480.0,
-      "wings":true,
-      "spd":2.0,
-      "row":0.0,
       "ind":0.0,
-      "timestamp":4380.0
+      "row":0.0,
+      "timestamp":4380.0,
+      "wings":true,
+      "spd":2.0
     },
     {
       "x":1376.0,
       "y":768.0,
       "cx":1480.0,
-      "col":1.0,
-      "row":7.0,
       "ind":2.0,
-      "timestamp":4500.0
+      "row":7.0,
+      "timestamp":4500.0,
+      "col":1.0
     },
     {
       "x":1568.0,
       "y":960.0,
       "cx":1560.0,
-      "wings":true,
-      "spd":2.0,
-      "row":0.0,
       "ind":1.0,
-      "timestamp":4530.0
+      "row":0.0,
+      "timestamp":4530.0,
+      "wings":true,
+      "spd":2.0
     },
     {
       "x":1568.0,
       "y":880.0,
       "cx":1560.0,
-      "wings":true,
-      "spd":2.0,
-      "row":0.0,
       "ind":1.0,
-      "timestamp":4590.0
+      "row":0.0,
+      "timestamp":4590.0,
+      "wings":true,
+      "spd":2.0
     },
     {
       "x":1696.0,
-      "y":768.0,
-      "cx":1700.0,
       "facing":-1.0,
-      "row":3.0,
+      "cx":1700.0,
+      "y":768.0,
       "ind":9.0,
+      "row":3.0,
       "timestamp":4620.0
     },
     {
       "x":800.0,
-      "y":1152.0,
-      "cx":1780.0,
       "facing":1.0,
-      "row":3.0,
+      "cx":1780.0,
+      "y":1152.0,
       "ind":9.0,
+      "row":3.0,
       "timestamp":4650.0
     },
     {
       "x":352.0,
-      "y":832.0,
-      "cx":1700.0,
       "facing":-1.0,
-      "row":3.0,
+      "cx":1700.0,
+      "y":832.0,
       "ind":6.0,
+      "row":3.0,
       "timestamp":4800.0
     },
     {
       "x":1648.0,
-      "y":576.0,
-      "cx":1480.0,
-      "spd":1.0,
       "chute":true,
-      "row":0.0,
+      "cx":1480.0,
+      "y":576.0,
       "ind":2.0,
-      "timestamp":4800.0
+      "row":0.0,
+      "timestamp":4800.0,
+      "spd":1.0
     },
     {
       "x":1488.0,
-      "y":576.0,
-      "cx":1480.0,
-      "spd":2.0,
       "chute":true,
-      "row":0.0,
+      "cx":1480.0,
+      "y":576.0,
       "ind":2.0,
-      "timestamp":4920.0
+      "row":0.0,
+      "timestamp":4920.0,
+      "spd":2.0
     },
     {
       "x":1568.0,
-      "y":576.0,
-      "cx":1480.0,
-      "spd":2.0,
       "chute":true,
-      "row":0.0,
+      "cx":1480.0,
+      "y":576.0,
       "ind":4.0,
-      "timestamp":4980.0
+      "row":0.0,
+      "timestamp":4980.0,
+      "spd":2.0
     },
     {
       "x":1568.0,
       "y":768.0,
       "cx":1600.0,
-      "row":5.0,
       "ind":0.0,
+      "row":5.0,
       "timestamp":5070.0
     },
     {
       "x":1024.0,
       "y":1152.0,
       "cx":1700.0,
-      "row":5.0,
       "ind":0.0,
+      "row":5.0,
       "timestamp":5100.0
     },
     {
       "x":896.0,
-      "y":320.0,
-      "cx":1600.0,
       "facing":1.0,
-      "row":3.0,
+      "cx":1600.0,
+      "y":320.0,
       "ind":7.0,
+      "row":3.0,
       "timestamp":4980.0
     },
     {
       "x":1184.0,
-      "y":320.0,
-      "cx":1700.0,
       "facing":-1.0,
-      "row":3.0,
+      "cx":1700.0,
+      "y":320.0,
       "ind":7.0,
+      "row":3.0,
       "timestamp":4980.0
     },
     {
       "x":1024.0,
       "y":1152.0,
       "cx":1640.0,
-      "row":5.0,
       "ind":0.0,
+      "row":5.0,
       "timestamp":2700.0
     },
     {
       "x":416.0,
       "y":576.0,
-      "spd":1.0,
       "cx":1480.0,
-      "row":0.0,
       "ind":0.0,
-      "timestamp":5310.0
+      "row":0.0,
+      "timestamp":5310.0,
+      "spd":1.0
     },
     {
       "x":416.0,
       "y":832.0,
-      "spd":1.0,
       "cx":1480.0,
-      "row":0.0,
       "ind":1.0,
-      "timestamp":5430.0
+      "row":0.0,
+      "timestamp":5430.0,
+      "spd":1.0
     },
     {
-      "x":928.0,
-      "y":768.0,
-      "spd":2.0,
+      "x":800.0,
+      "y":832.0,
       "cx":1480.0,
-      "row":0.0,
       "ind":2.0,
-      "timestamp":5550.0
+      "row":0.0,
+      "timestamp":5550.0,
+      "spd":2.0,
+      "wings":true
     },
     {
       "x":1376.0,
       "y":768.0,
-      "spd":2.0,
       "cx":1480.0,
-      "row":0.0,
       "ind":3.0,
-      "timestamp":5610.0
+      "row":0.0,
+      "timestamp":5610.0,
+      "spd":2.0
     },
     {
       "x":1600.0,
       "y":448.0,
-      "spd":2.0,
       "cx":1480.0,
-      "row":0.0,
       "ind":4.0,
-      "timestamp":5670.0
+      "row":0.0,
+      "timestamp":5670.0,
+      "spd":2.0
     },
     {
       "x":1568.0,
       "y":928.0,
       "cx":1540.0,
-      "wings":true,
-      "col":4.0,
-      "row":2.0,
       "ind":7.0,
-      "timestamp":5730.0
+      "row":2.0,
+      "timestamp":5730.0,
+      "wings":true,
+      "col":4.0
     }
   ],
-  "bgm":"bgm_outskirts"
+  "bgm":"bgm_outskirts",
+  "stage_event":"wizard",
+  "bossfight":false
 }

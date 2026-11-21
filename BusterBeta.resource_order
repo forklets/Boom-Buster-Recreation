@@ -29,6 +29,13 @@
     {"name":"text","order":1459,"path":"folders/scripts/text.yy",},
   ],
   "ResourceOrderSettings":[
+    {"name":"spr_bg_mall_guy_overlay","order":99,"path":"sprites/spr_bg_mall_guy_overlay/spr_bg_mall_guy_overlay.yy",},
+    {"name":"spr_bg_factory_belt_2_overlay","order":99,"path":"sprites/spr_bg_factory_belt_2_overlay/spr_bg_factory_belt_2_overlay.yy",},
+    {"name":"spr_bg_factory_belt_1_overlay","order":99,"path":"sprites/spr_bg_factory_belt_1_overlay/spr_bg_factory_belt_1_overlay.yy",},
+    {"name":"spr_bg_factory_belt_0_overlay","order":99,"path":"sprites/spr_bg_factory_belt_0_overlay/spr_bg_factory_belt_0_overlay.yy",},
+    {"name":"bgr_city_sunset_overlays","order":99,"path":"sprites/bgr_city_sunset_overlays/bgr_city_sunset_overlays.yy",},
+    {"name":"scr_check_all_foods","order":99,"path":"scripts/scr_check_all_foods/scr_check_all_foods.yy",},
+    {"name":"impact_collide_thrown","order":99,"path":"scripts/impact_collide_thrown/impact_collide_thrown.yy",},
     {"name":"fnt_adlib","order":1900,"path":"fonts/fnt_adlib/fnt_adlib.yy",},
     {"name":"fnt_comicsans","order":1901,"path":"fonts/fnt_comicsans/fnt_comicsans.yy",},
     {"name":"fnt_debug","order":1902,"path":"fonts/fnt_debug/fnt_debug.yy",},

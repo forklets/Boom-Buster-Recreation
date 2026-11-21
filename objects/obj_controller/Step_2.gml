@@ -4,7 +4,31 @@ if (array_contains(global.stages_final, room))
     instance_deactivate_object(obj_crate);
     instance_deactivate_object(par_enemy);
     instance_deactivate_object(obj_coin);
+    instance_deactivate_object(obj_footstep_grass);
+    instance_deactivate_object(obj_footstep_metal);
     instance_activate_region(camx - 128, camy - 256, camx + 1408 + 128, camy + 1080 + 256, true);
+}
+
+if (array_contains(global.stages_final_scroll, room) && !instance_exists(obj_paused))
+{
+    get_cams();
+    instance_deactivate_object(obj_solid);
+    instance_deactivate_object(obj_semisolid);
+    instance_deactivate_object(obj_onewayL);
+    instance_deactivate_object(obj_onewayR);
+    instance_deactivate_object(obj_caution_semisolid);
+    instance_activate_region(camx - 384, camy - 192, 1792, 1272, true);
+    instance_deactivate_object(obj_buzzsaw);
+    instance_deactivate_object(obj_spike);
+    instance_deactivate_object(par_enemy);
+    instance_deactivate_object(obj_buzzsaw);
+    instance_deactivate_object(obj_coin);
+    instance_deactivate_object(obj_dynalife);
+    instance_deactivate_object(obj_bouncepounce);
+    instance_deactivate_object(obj_spring);
+    instance_activate_region(camx - 192, camy - 192, 1600, 1272, true);
+    instance_activate_object(obj_onoff_cyan);
+    instance_activate_object(obj_onoff_orange);
 }
 
 var _gameW;
@@ -46,7 +70,7 @@ if (target_swap != 0)
     var _w = _camw * _zoom;
     var _h = 1080 * _zoom;
     camera_set_view_size(view_camera[0], _w, _h);
-    
+
     if (instance_exists(target))
     {
         _x = target.x - (_w / 2);
@@ -57,7 +81,7 @@ if (target_swap != 0)
         _y = clamp(_y, global.room_top, room_height - _h - 64);
         camera_set_view_pos(view_camera[0], _x, _y - view_yoff);
     }
-    
+
     exit;
 }
 
@@ -69,7 +93,7 @@ else
 if (array_contains(global.stages_final, room))
 {
     x = 64;
-    
+
     if (instance_exists(target) && !final_ended)
     {
         if (cam_final)
@@ -79,28 +103,24 @@ if (array_contains(global.stages_final, room))
             cam_final_yoff = easy_smooth(cam_final_yoff, -668, 10);
         }
         else if (cam_go)
-        {
             cam_spd = approach(cam_spd, 1.7, 0.011333333333333332);
-        }
         else
-        {
             cam_spd = approach(cam_spd, 0, 0.01888888888888889);
-        }
-        
+
         if (!exit_freeze())
             y -= cam_spd;
     }
-    
+
     get_cams(0);
     var _camy = camy;
-    
+
     if (jello_bounced)
     {
         with (par_player)
         {
             if (y < (_camy + 540))
                 obj_controller.y = easy_smooth(obj_controller.y, y - 540, 5);
-            
+
             if (grounded)
                 obj_controller.jello_bounced = false;
         }
@@ -118,12 +138,12 @@ if (array_contains(global.stages_final, room))
 else if (global.auto_scroller)
 {
     var _time;
-    
+
     if (obj_editor.edit_mode)
         _time = obj_editor.camera_timestamp;
     else
         _time = bridget_timer;
-    
+
     var _dist_per_second = 144;
     var _dist = (_time / 60) * _dist_per_second;
     x = 64 + _dist;
@@ -137,61 +157,57 @@ else if (global.stage_type == 0)
         x = clamp(x, 64, room_width - _gameW);
     }
     else if (locked_x != -4)
-    {
         x = locked_x;
-    }
     else if (instance_exists(target))
     {
         var _nocam = false;
-        
+
         with (target)
         {
             if (place_meeting(x, y, obj_nocam))
             {
                 var _inst = instance_place(x, y, obj_nocam);
-                
+
                 if (_inst.vertical_only)
                     _nocam = true;
             }
         }
-        
+
         if (!_nocam)
         {
             var relativePosition = clamp((_xAdd - barrierL) / (barrierR - barrierL), 0, 1);
-            
+
             if (relative_position == -4)
                 relative_position = relativePosition;
-            
+
             relative_position = lerp(relative_position, relativePosition, relative_pos_ease);
             relative_pos_ease = approach(relative_pos_ease, 1, 0.025);
             x = lerp(64, room_width - (64 * zoom) - (_gameW * zoom), relative_position);
         }
     }
-    
+
     if (cam_free_y)
     {
         y = _yAdd - 540;
         y = clamp(y, global.room_top, room_height - 1080 - 64);
     }
     else if (locked_y != -4)
-    {
         y = locked_y;
-    }
     else if (instance_exists(target) && !place_meeting(target.x, target.y, obj_nocam))
     {
         var _nocam = false;
-        
+
         with (target)
         {
             if (place_meeting(x, y, obj_nocam))
             {
                 var _inst = instance_place(x, y, obj_nocam);
-                
+
                 if (_inst.horizontal_only)
                     _nocam = true;
             }
         }
-        
+
         if (!_nocam)
         {
             var relativePosition = clamp((_yAdd - barrierU) / (barrierD - barrierU), 0, 1);
@@ -203,7 +219,7 @@ else if (global.stage_type == 1)
 {
     if (instance_exists(target))
         x = (target.x - 704) + 200;
-    
+
     y = 0;
 }
 
@@ -219,7 +235,7 @@ if (global.stage_type == 1)
     instance_deactivate_object(par_carry);
     get_cams();
     instance_activate_region(camx - 64, camy, 1472, 1080, true);
-    
+
     if (instance_exists(obj_player))
     {
         for (var i = 0; i < ds_list_size(obj_player.list_carry); i++)
@@ -233,7 +249,7 @@ if (obj_editor.edit_mode)
     yAxis = keyboard_check(ord("S")) - keyboard_check(ord("W"));
     cam_xoff += ((xAxis * 6) + (xAxis * (6 * !keyboard_check(vk_shift))));
     cam_yoff += ((yAxis * 6) + (yAxis * (6 * !keyboard_check(vk_shift))));
-    
+
     if (keyboard_check_pressed(vk_tab))
     {
         cam_xoff = 0;

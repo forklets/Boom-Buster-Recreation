@@ -201,6 +201,13 @@
   },
   "name":"BusterBeta",
   "resources":[
+    {"id":{"name":"spr_bg_mall_guy_overlay","path":"sprites/spr_bg_mall_guy_overlay/spr_bg_mall_guy_overlay.yy",},},
+    {"id":{"name":"spr_bg_factory_belt_2_overlay","path":"sprites/spr_bg_factory_belt_2_overlay/spr_bg_factory_belt_2_overlay.yy",},},
+    {"id":{"name":"spr_bg_factory_belt_1_overlay","path":"sprites/spr_bg_factory_belt_1_overlay/spr_bg_factory_belt_1_overlay.yy",},},
+    {"id":{"name":"spr_bg_factory_belt_0_overlay","path":"sprites/spr_bg_factory_belt_0_overlay/spr_bg_factory_belt_0_overlay.yy",},},
+    {"id":{"name":"bgr_city_sunset_overlays","path":"sprites/bgr_city_sunset_overlays/bgr_city_sunset_overlays.yy",},},
+    {"id":{"name":"scr_check_all_foods","path":"scripts/scr_check_all_foods/scr_check_all_foods.yy",},},
+    {"id":{"name":"impact_collide_thrown","path":"scripts/impact_collide_thrown/impact_collide_thrown.yy",},},
     {"id":{"name":"acurv_basics","path":"animcurves/acurv_basics/acurv_basics.yy",},},
     {"id":{"name":"acurv_cage","path":"animcurves/acurv_cage/acurv_cage.yy",},},
     {"id":{"name":"acurv_player","path":"animcurves/acurv_player/acurv_player.yy",},},

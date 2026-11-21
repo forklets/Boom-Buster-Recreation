@@ -4,7 +4,7 @@ if (global.debug && keyboard_check_pressed(ord("5")) && keyboard_check(vk_shift)
     scr_get_achievement(_str);
 }
 
-var _deadzone;
+var _deadzone = 0.6;
 
 if (global.deadzone == 0)
     _deadzone = 0.4;

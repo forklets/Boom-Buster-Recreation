@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"impact_collide_thrown",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"impact_collide_thrown",
+  "parent":{
+    "name":"game",
+    "path":"folders/scripts/game.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

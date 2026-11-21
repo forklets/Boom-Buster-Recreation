@@ -6,7 +6,7 @@ if (!place_meeting(x, y + 48, par_ground) && room == rm_bonus_b3)
 
 var _player = instance_place(x, y, obj_player);
 
-if (_player && !triggered)
+if (_player && !triggered && _player.grounded)
 {
     audio_play_sound(snd_wrongbuzzer, 0, false);
     triggered = true;

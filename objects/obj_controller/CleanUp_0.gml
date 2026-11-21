@@ -13,4 +13,22 @@ if (part_system_exists(ps_rain))
 if (part_system_exists(ps_lava))
     part_system_destroy(ps_lava);
 
+if (part_type_exists(part_type_rain))
+    part_type_destroy(part_type_rain);
+
+if (part_type_exists(part_type_lava))
+    part_type_destroy(part_type_lava);
+
 global.elements = [];
+
+with (par_physics)
+{
+    if (ds_exists(list_collision, ds_type_list))
+        ds_list_destroy(list_collision);
+}
+
+with (par_physics)
+{
+    if (ds_exists(list_ignore, ds_type_list))
+        ds_list_destroy(list_ignore);
+}
